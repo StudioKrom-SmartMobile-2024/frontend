@@ -2,10 +2,11 @@
 
 We are proud to present "OVERLOAD," an app designed to help neurotypical individuals understand and raise awareness about overstimulation. OVERLOAD allows users to experience the challenges that neurodivergent individuals face daily. By utilizing VR and 8D audio, we provide an immersive and realistic experience to convey the impact of overstimulation.
 
+<img src="/assets/img/overload-logo-transparent.png" alt="" width="200"/>
+
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -18,14 +19,14 @@ We are proud to present "OVERLOAD," an app designed to help neurotypical individ
 5. Open the app on the phone/emulator.
 6. Enjoy!
 
-## Usage
-
-Examples and instructions on how to use your project.
-
 ## Contributing
 
-Team Mentis
+Team Mentis is a project group at Fontys ICT Eindhoven. We are in our fourth semester, specializing in Smart Mobile. We are working on a project assigned by [Studio Krom](https://krom.studio/). We had considerable freedom in choosing our project, as long as it addressed the topic of overstimulation. After extensive brainstorming and research, we created [Overload](#overload)!
+
+<img src="/assets/img/horizontal variant/mentis-horizontal-variant-transparent.png" alt="" width="600"/>
+<br><br>
+<img src="/assets/img/fontys-logo.png" alt="" width="350"/>
 
 ## License
 
-Information about the license for your project.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
