@@ -26,7 +26,7 @@ class _WelcomePageState extends State<WelcomePage> {
             child: Container(
               child: const Column(
                 children: [
-                  GradientButton(22),
+                  GradientButton("Get started now", 22),
                 ],
               ),
             ),
