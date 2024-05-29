@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:vr_demo/utils/SoundManager.dart';
 import 'package:vr_player/vr_player.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   String? _currentPosition;
   double _currentSliderValue = 0.1;
   double _seekPosition = 0;
+  TrainStationSceMan stationScene = TrainStationSceMan(0, soundCertainty: 1.0);
 
   @override
   void initState() {
@@ -197,7 +199,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
     if (_isFullScreen) {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
       ]);
       SystemChrome.setEnabledSystemUIMode(
         SystemUiMode.manual,
@@ -224,8 +225,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
 
     if (_isPlaying) {
       await _viewPlayerController.pause();
+      stationScene.pauseAll();
     } else {
       await _viewPlayerController.play();
+      stationScene.resumeAll();
     }
 
     setState(() {
@@ -245,8 +248,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
       ..onPositionChange = onChangePosition
       ..onFinishedChange = onReceiveEnded;
     _viewPlayerController.loadVideo(
-      videoUrl:
-          'https://cdn.bitmovin.com/content/assets/playhouse-vr/m3u8s/105560.m3u8',
+      videoUrl: 'https://i.imgur.com/3WJFkSt.mp4',
     );
   }
 
@@ -272,6 +274,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   void onReceiveDuration(int millis) {
     setState(() {
       _intDuration = millis;
+      stationScene.updatePosition(millis);
       _duration = millisecondsToDateTime(millis);
     });
   }
@@ -279,6 +282,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   void onChangePosition(int millis) {
     setState(() {
       _currentPosition = millisecondsToDateTime(millis);
+      stationScene.updatePosition(millis);
+      stationScene.checkStopwatchForSounds();
       _seekPosition = millis.toDouble();
     });
   }
