@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_soloud: ^2.0.2
   vr_player: ^0.2.2
 
 dev_dependencies:
