@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(32),
                       child: Scaffold(
                         backgroundColor: Colors.transparent,
                         body: Column(
@@ -36,14 +36,13 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Align(
                               alignment: Alignment.topRight,
-                              child: SizedBox(
-                                child: Icon(
-                                  Icons.settings,
-                                  color: Colors.black,
-                                  size: 40,
-                                ),
+                              child: Icon(
+                                Icons.settings,
+                                color: Colors.black,
+                                size: 38,
                               ),
                             ),
+                            SizedBox(height: 20),
                             Text(
                               "Overstimulating experiences",
                               style: TextStyle(
@@ -67,22 +66,25 @@ class _HomePageState extends State<HomePage> {
                     flex: 6,
                     child: Scaffold(
                       backgroundColor: Colors.transparent,
-                      body: Column(
-                        children: [
-                          ExperienceCards(
-                              "The Mall",
-                              "Bright lights and colors",
-                              "assets/img/homepage icons/mall.png"),
-                          SizedBox(height: 20),
-                          ExperienceCards("Train Station", "Transit Rush",
-                              "assets/img/homepage icons/train.png"),
-                          SizedBox(height: 20),
-                          ExperienceCards("The Playground", "Kid's POV",
-                              "assets/img/homepage icons/playground.png"),
-                          SizedBox(height: 20),
-                          ExperienceCards("A Concert", "Live noise and crowd",
-                              "assets/img/homepage icons/concert.png"),
-                        ],
+                      body: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 32),
+                        child: Column(
+                          children: [
+                            ExperienceCards(
+                                "The Mall",
+                                "Bright lights and colors",
+                                "assets/img/homepage icons/mall.png"),
+                            SizedBox(height: 25),
+                            ExperienceCards("Train Station", "Transit Rush",
+                                "assets/img/homepage icons/train.png"),
+                            SizedBox(height: 25),
+                            ExperienceCards("The Playground", "Kid's POV",
+                                "assets/img/homepage icons/playground.png"),
+                            SizedBox(height: 25),
+                            ExperienceCards("A Concert", "Live noise and crowd",
+                                "assets/img/homepage icons/concert.png"),
+                          ],
+                        ),
                       ),
                     ),
                   ),

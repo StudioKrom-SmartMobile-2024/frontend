@@ -33,13 +33,19 @@ class ExperienceCards extends StatelessWidget {
                 ),
               ],
             ),
-            child: Image.asset(
-              iconPath,
+            child: Center(
+              child: Image.asset(
+                iconPath,
+                width: 39,
+                height: 39,
+              ),
             ),
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const SizedBox(height: 28),
               Text(
                 title,
                 style: const TextStyle(
