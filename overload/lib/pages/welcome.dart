@@ -19,7 +19,10 @@ class _WelcomePageState extends State<WelcomePage> {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Placeholder(),
+                  child: Scaffold(
+                    backgroundColor: Colors.transparent,
+                    body: Placeholder(),
+                  ),
                 ),
                 Expanded(
                   flex: 1,

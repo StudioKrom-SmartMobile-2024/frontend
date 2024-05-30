@@ -21,3 +21,6 @@ flutter:
     - family: Gulf
       fonts:
         - asset: assets/fonts/GulfsDisplay-Normal.ttf
+  assets:
+    - assets/img/
+    - assets/img/homepage icons/
