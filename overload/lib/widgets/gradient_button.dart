@@ -25,8 +25,7 @@ class GradientButton extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               TextButton(
                 style: TextButton.styleFrom(

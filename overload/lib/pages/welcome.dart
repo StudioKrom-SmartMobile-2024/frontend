@@ -13,26 +13,46 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              child: const Placeholder(),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              child: const Column(
-                children: [
-                  GradientButton("Get started now", 22),
-                ],
-              ),
-            ),
-          ),
-        ],
-      )),
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 26),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    child: const Placeholder(),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "FEELING OVERWELMED?",
+                          style: TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Gulf"),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Discover the World First-Hand as it is for Those with Sensory Overload",
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 20),
+                        GradientButton("Get started now", 28),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )),
+      ),
     );
   }
 }
