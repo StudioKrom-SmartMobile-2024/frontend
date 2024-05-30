@@ -10,11 +10,12 @@ abstract class SoundManager {
 
   SoundManager(this.currentPosition, {this.soundCertainty = 1.0});
 
-  void disposeAllResources() {
+  void stopAndClean() {
     for (SoundHandle handle in handles) {
       soloud.stop(handle);
     }
     soloud.disposeAllSources();
+    usedSources = List.empty();
   }
 
   void pauseAll() {
