@@ -1,52 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:overload/constants.dart';
 
 class GradientButton extends StatelessWidget {
-  final double fontSize;
   final String text;
+  final Function onPress;
+  final Icon? icon;
 
-  const GradientButton(this.text, this.fontSize, {super.key});
+  GradientButton({
+    super.key,
+    required this.onPress,
+    required this.text,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: <Color>[
-                    Color.fromRGBO(254, 41, 52, 1),
-                    Color.fromRGBO(254, 114, 22, 1),
-                  ],
-                ),
+    return GestureDetector(
+      onTap: () => onPress(),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Container(
+                decoration: const BoxDecoration(gradient: OVERLOAD_GRADIENT),
               ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(18),
-                  textStyle: TextStyle(
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.all(18),
+                  ),
+                  onPressed: () => onPress(),
+                  child: Text(
+                    text,
+                    style: const TextStyle(
+                      fontSize: SUBHEADER_FONTSIZE,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-                onPressed: () {},
-                child: Text(text),
-              ),
-              Icon(
-                Icons.navigate_next,
-                color: Colors.black,
-                size: fontSize * 1.5,
-              ),
-            ],
-          ),
-        ],
+                icon != null
+                    ? const Icon(
+                        Icons.navigate_next,
+                        color: Colors.black,
+                        size: SUBHEADER_FONTSIZE * 1.5,
+                      )
+                    : const SizedBox()
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
