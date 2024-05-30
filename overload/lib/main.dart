@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:overload/pages/welcome.dart';
+import 'package:overload/pages/home.dart';
 
 void main() {
   runApp(const MainApp());
