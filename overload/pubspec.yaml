@@ -21,6 +21,9 @@ flutter:
     - family: Gulf
       fonts:
         - asset: assets/fonts/GulfsDisplay-Normal.ttf
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/RobotoFlex-VariableFont.ttf
   assets:
     - assets/img/
     - assets/img/homepage icons/
