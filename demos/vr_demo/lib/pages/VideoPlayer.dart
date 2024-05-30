@@ -17,9 +17,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   late Animation<double> _animation;
   bool _isShowingBar = false;
   bool _isPlaying = false;
-  bool _isFullScreen = false;
+  bool _isFullScreen = true; // Start in fullscreen
   bool _isVideoFinished = false;
-  bool _isLandscapeOrientation = false;
+  bool _isLandscapeOrientation = true; // Start in landscape orientation
   bool _isVolumeSliderShown = false;
   bool _isVolumeEnabled = true;
   late double _playerWidth;
@@ -35,11 +35,36 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
 
   @override
   void initState() {
+    super.initState();
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
     _toggleShowingBar();
-    super.initState();
+
+    // Set the initial orientation and fullscreen mode
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [],
+    );
+  }
+
+  @override
+  void dispose() {
+    // Reset the orientation and UI overlays when the widget is disposed
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
+    );
+    super.dispose();
   }
 
   void _toggleShowingBar() {
@@ -56,10 +81,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   @override
   Widget build(BuildContext context) {
     _playerWidth = MediaQuery.of(context).size.width;
-    _playerHeight =
-        _isFullScreen ? MediaQuery.of(context).size.height : _playerWidth / 2;
-    _isLandscapeOrientation =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    _playerHeight = MediaQuery.of(context).size.height; // Fullscreen height
 
     return Scaffold(
       body: GestureDetector(
@@ -130,7 +152,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
                         _duration?.toString() ?? '99:99',
                         style: const TextStyle(color: Colors.white),
                       ),
-                      if (_isFullScreen || _isLandscapeOrientation)
+                      if (_isVolumeEnabled)
                         IconButton(
                           icon: Icon(
                             _isVolumeEnabled
@@ -141,25 +163,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
                           onPressed: () =>
                               switchVolumeSliderDisplay(show: true),
                         ),
-                      IconButton(
-                        icon: Icon(
-                          _isFullScreen
-                              ? Icons.fullscreen_exit
-                              : Icons.fullscreen,
-                          color: Colors.white,
-                        ),
-                        onPressed: fullScreenPressed,
-                      ),
-                      if (_isFullScreen)
-                        IconButton(
-                          icon: const Icon(
-                            Icons.vrpano,
-                            color: Colors.white,
-                          ),
-                          onPressed: cardBoardPressed,
-                        )
-                      else
-                        Container(),
                     ],
                   ),
                 ),
@@ -188,34 +191,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
 
   void cardBoardPressed() {
     _viewPlayerController.toggleVRMode();
-  }
-
-  Future<void> fullScreenPressed() async {
-    await _viewPlayerController.fullScreen();
-    setState(() {
-      _isFullScreen = !_isFullScreen;
-    });
-
-    if (_isFullScreen) {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeRight,
-      ]);
-      SystemChrome.setEnabledSystemUIMode(
-        SystemUiMode.manual,
-        overlays: [],
-      );
-    } else {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
-      SystemChrome.setEnabledSystemUIMode(
-        SystemUiMode.manual,
-        overlays: SystemUiOverlay.values,
-      );
-    }
   }
 
   Future<void> playAndPause() async {
@@ -288,7 +263,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
     });
   }
 
-  // ignore: avoid_positional_boolean_parameters
   void onReceiveEnded(bool isFinished) {
     setState(() {
       _isVideoFinished = isFinished;
