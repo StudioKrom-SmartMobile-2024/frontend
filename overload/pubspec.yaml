@@ -21,9 +21,44 @@ flutter:
     - family: Gulf
       fonts:
         - asset: assets/fonts/GulfsDisplay-Normal.ttf
+
     - family: Roboto
       fonts:
         - asset: assets/fonts/RobotoFlex-VariableFont.ttf
+
+    - family: Dancing
+      fonts:
+        - asset: assets/fonts/Dancing-Script.ttf
+
+    - family: JostItalic
+      fonts:
+        - asset: assets/fonts/Jost-Italic.ttf
+
+    - family: Jost
+      fonts:
+        - asset: assets/fonts/Jost.ttf
+
+    - family: KarlaItalic
+      fonts:
+        - asset: assets/fonts/Karla-Italic.ttf
+
+    - family: Karla
+      fonts:
+        - asset: assets/fonts/Karla.ttf
+
+    - family: SignikaNegative
+      fonts:
+        - asset: assets/fonts/SignikaNegative.ttf
+
+    - family: UbuntuSansMonoItalic
+      fonts:
+        - asset: assets/fonts/UbuntuSansMono-Italic.ttf
+
+    - family: UbuntuSansMono
+      fonts:
+        - asset: assets/fonts/UbuntuSansMono.ttf
+
   assets:
     - assets/img/
     - assets/img/homepage icons/
+    - assets/img/homepage-icons-v2/
