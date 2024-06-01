@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 ! Important disclaimer !
 This piece of code was not thought of, designed or created by anyone in the Overload app. 
 All credits go to THALLIVA on Github
--> 
+-> https://github.com/THALLIVA/any_widget_marquee
 */
 
 class AnyMarqueeSpeed {
