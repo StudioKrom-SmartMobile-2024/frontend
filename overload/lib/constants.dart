@@ -8,6 +8,8 @@ const COLOR_GREEN = Color(0xFFC3F3B3);
 const COLOR_BLUE = Color(0xFF07BFEB);
 const COLOR_BLACK = Color(0xFF000000);
 const COLOR_NAVY = Color(0xFF031A2A);
+const COLOR_WHITE = Color(0xFFFFFFFF);
+const COLOR_GRAY = Color(0x99D9D9D9);
 
 //Define font sizes
 const TITLE_FONTSIZE = 38.00;
@@ -25,10 +27,13 @@ const TITLE_TEXT_STYLE = TextStyle(
     fontSize: TITLE_FONTSIZE, color: COLOR_BLACK, fontFamily: FONT_GULF);
 
 const HEADER_TEXT_STYLE = TextStyle(
-    fontSize: HEADER_FONTSIZE, color: COLOR_NAVY, fontFamily: FONT_GULF);
+    fontSize: HEADER_FONTSIZE, color: COLOR_BLACK, fontFamily: FONT_GULF);
 
 const SUBHEADER_TEXT_STYLE = TextStyle(
-    fontSize: SUBHEADER_FONTSIZE, color: COLOR_NAVY, fontFamily: FONT_GULF);
+  fontSize: SUBHEADER_FONTSIZE,
+  color: COLOR_NAVY,
+  fontFamily: FONT_GULF,
+);
 
 const BODY_TEXT_STYLE = TextStyle(
     fontSize: BODY_FONTSIZE,
@@ -49,3 +54,6 @@ const OVERLOAD_GRADIENT = LinearGradient(
     Color(0xFFFF9048),
   ],
 );
+
+//Define constant icon sizes
+const DEFAULT_ICON_SIZE = 34.00;
