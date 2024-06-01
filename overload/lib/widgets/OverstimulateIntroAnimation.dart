@@ -53,6 +53,7 @@ class _OverstimulateIntroAnimationState
                   widgetHorizontalSpaceMin,
               width: constraints.maxWidth,
               height: widgetHeight,
+              isFromLTR: true,
               speedRate: _random.nextDouble() * widgetMaxSpeed + widgetMinSpeed,
               children:
                   List.generate(itemsToGenerate, (index) => getRandomElement()),
@@ -79,6 +80,7 @@ class _OverstimulateIntroAnimationState
                   widgetHorizontalSpaceMin,
               width: constraints.maxWidth,
               height: widgetHeight,
+              isFromLTR: true,
               speedRate: _random.nextDouble() * widgetMaxSpeed + widgetMinSpeed,
               children:
                   List.generate(itemsToGenerate, (index) => getRandomElement()),
@@ -105,6 +107,7 @@ class _OverstimulateIntroAnimationState
                   widgetHorizontalSpaceMin,
               width: constraints.maxWidth,
               height: widgetHeight,
+              isFromLTR: true,
               speedRate: _random.nextDouble() * widgetMaxSpeed + widgetMinSpeed,
               children:
                   List.generate(itemsToGenerate, (index) => getRandomElement()),
@@ -131,6 +134,7 @@ class _OverstimulateIntroAnimationState
                   widgetHorizontalSpaceMin,
               width: constraints.maxWidth,
               height: widgetHeight,
+              isFromLTR: true,
               speedRate: _random.nextDouble() * widgetMaxSpeed + widgetMinSpeed,
               children:
                   List.generate(itemsToGenerate, (index) => getRandomElement()),

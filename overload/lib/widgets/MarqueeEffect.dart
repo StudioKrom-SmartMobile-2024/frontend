@@ -21,7 +21,7 @@ class MarqueeEffect extends StatefulWidget {
     required this.width,
     required this.height,
     this.speedRate = 1,
-    this.scrollFromEnd = true,
+    this.isFromLTR = false,
     this.delayedStart = const Duration(seconds: 0),
   });
 
@@ -31,7 +31,7 @@ class MarqueeEffect extends StatefulWidget {
   double width;
   double height;
   final double speedRate;
-  bool scrollFromEnd;
+  bool isFromLTR;
   Duration delayedStart;
 
   @override
@@ -82,14 +82,14 @@ class _MarqueeEffectState extends State<MarqueeEffect> {
             alignment: Alignment.center,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
+              reverse: widget.isFromLTR,
               itemCount: double.maxFinite.toInt(),
               itemBuilder: (context, index) {
                 final childIndex = index % widget.children.length;
                 final distance =
                     (index == 0 ? widget.marginLeft : widget.betweenSpacing);
                 return Container(
-                  padding: EdgeInsets.only(
-                      left: widget.scrollFromEnd ? distance : 0),
+                  padding: EdgeInsets.only(left: distance),
                   alignment: Alignment.center,
                   child: widget.children[childIndex],
                 );
