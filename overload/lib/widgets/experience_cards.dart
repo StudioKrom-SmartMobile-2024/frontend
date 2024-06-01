@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:overload/constants.dart';
 
 class ExperienceCards extends StatelessWidget {
   final String title;
   final String text;
   final String iconPath;
+  final Function onPress;
 
-  const ExperienceCards(this.title, this.text, this.iconPath, {super.key});
+  const ExperienceCards(this.title, this.text, this.iconPath,
+      {super.key, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 106,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        color: const Color.fromRGBO(217, 217, 217, 59),
+        color: COLOR_GRAY,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
-            width: 59,
-            height: 59,
+            height: 60,
+            width: 60,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
@@ -36,34 +38,36 @@ class ExperienceCards extends StatelessWidget {
             child: Center(
               child: Image.asset(
                 iconPath,
-                width: 39,
-                height: 39,
+                width: 34,
+                height: 34,
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
               ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(height: 28),
-              Text(
-                title,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Gulf"),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: SUBHEADER_TEXT_STYLE,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    text,
+                    style: BODY_TEXT_STYLE,
+                    softWrap: true,
+                  ),
+                ],
               ),
-              Text(
-                text,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
+            ),
           ),
-          const Icon(Icons.east, color: Colors.black, size: 40)
+          const Icon(Icons.east, color: Colors.black, size: DEFAULT_ICON_SIZE),
         ],
       ),
     );

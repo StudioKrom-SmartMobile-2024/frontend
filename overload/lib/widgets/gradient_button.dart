@@ -34,14 +34,7 @@ class GradientButton extends StatelessWidget {
                     padding: const EdgeInsets.all(18),
                   ),
                   onPressed: () => onPress(),
-                  child: Text(
-                    text,
-                    style: const TextStyle(
-                      fontSize: SUBHEADER_FONTSIZE,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
+                  child: Text(text, style: SUBHEADER_TEXT_STYLE),
                 ),
                 icon != null
                     ? const Icon(
