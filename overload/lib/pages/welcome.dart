@@ -31,7 +31,7 @@ class WelcomePage extends StatelessWidget {
                   GradientButton(
                     text: "Get started now",
                     onPress: getStarted,
-                    icon: const Icon(Icons.chevron_right),
+                    iconData: Icons.chevron_right,
                   ),
                 ],
               ),
