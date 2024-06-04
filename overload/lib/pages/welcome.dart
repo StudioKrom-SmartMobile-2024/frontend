@@ -1,56 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:overload/widgets/gradient_button.dart';
+import 'package:go_router/go_router.dart';
+import 'package:overload/utils/constants.dart';
+import 'package:overload/widgets/animations/intro-animation.dart';
+import 'package:overload/widgets/common/gradient_button.dart';
 
-class WelcomePage extends StatefulWidget {
+class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
   @override
-  State<WelcomePage> createState() => _WelcomePageState();
-}
-
-class _WelcomePageState extends State<WelcomePage> {
-  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 26),
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Scaffold(
-                    backgroundColor: Colors.transparent,
-                    body: Placeholder(),
+        child: Column(
+          children: [
+            const OverstimulateIntroAnimation(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "FEELING OVERWELMED?",
+                    style: TITLE_TEXT_STYLE,
                   ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "FEELING OVERWELMED?",
-                        style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Gulf"),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        "Discover the World First-Hand as it is for Those with Sensory Overload",
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 20),
-                      GradientButton("Get started now", 28),
-                    ],
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Discover the world first-hand as it is for those suffering from sensory overload",
+                    style: BODY_TEXT_STYLE,
                   ),
-                ),
-              ],
-            )),
+                  const SizedBox(height: 20),
+                  GradientButton(
+                    text: "Get started now",
+                    onPress: () => context.go("/home"),
+                    iconData: Icons.chevron_right,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

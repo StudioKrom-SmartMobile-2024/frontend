@@ -1,13 +1,29 @@
 import 'package:flutter/services.dart';
-import 'package:vr_demo/main.dart';
-import 'package:vr_demo/utils/SoundManager.dart';
-import 'package:vr_demo/widgets/vr-dialogues/ConfirmationDialogue.dart';
-import 'package:vr_demo/widgets/vr-dialogues/SettingsOverlay.dart';
+import 'package:go_router/go_router.dart';
+import 'package:overload/models/experience_params.dart';
+import 'package:overload/models/experience_type.dart';
+import 'package:overload/utils/SoundManager.dart';
+import 'package:overload/widgets/vr-dialogues/ConfirmationDialogue.dart';
+import 'package:overload/widgets/vr-dialogues/SettingsOverlay.dart';
 import 'package:vr_player/vr_player.dart';
 import 'package:flutter/material.dart';
 
 class VideoPlayerPage extends StatefulWidget {
-  const VideoPlayerPage({super.key});
+  final ExperienceParams params;
+  late final SoundManager soundMan;
+
+  VideoPlayerPage({
+    Key? key,
+    required this.params,
+  }) : super(key: key) {
+    switch (this.params.type) {
+      case ExperienceType.trainStation:
+        soundMan = TrainStationSceMan(0, soundCertainty: 1.0);
+        break;
+      default:
+        soundMan = EmptySoundManager(0, soundCertainty: 0.0);
+    }
+  }
 
   @override
   _VideoPlayerPageState createState() => _VideoPlayerPageState();
@@ -27,8 +43,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   bool isVideoLoading = false;
   bool isVideoReady = false;
 
-  TrainStationSceMan trainSceMan = TrainStationSceMan(0, soundCertainty: 1.0);
-
   @override
   void initState() {
     super.initState();
@@ -45,9 +59,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   void dispose() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
     ]);
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
@@ -101,7 +112,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
                     onPressed: () => switchSettingsDisplay(true),
                   )),
           if (_isShowingConfirmExit)
-            ConfirmLeaveDialogue(
+            ConfirmationDialogue(
               onConfirm: confirmLeave,
               onCancel: cancelLeave,
               popupDescription: 'Are you sure you want to exit the experience?',
@@ -110,7 +121,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
               popupTitle: 'EXIT EXPERIENCE',
             ),
           if (_isDisclaimerShowing)
-            ConfirmLeaveDialogue(
+            ConfirmationDialogue(
               onConfirm: onConfirmExperience,
               onCancel: confirmLeave,
               popupDescription:
@@ -139,16 +150,12 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   }
 
   void confirmLeave() {
-    trainSceMan.stopAndClean();
+    widget.soundMan.stopAndClean();
     setState(() {
       _isShowingConfirmExit = false;
     });
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(),
-      ),
-    );
+
+    context.go("/home");
   }
 
   void cardBoardPressed() {
@@ -160,7 +167,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
 
   Future<void> exitExperience() async {
     await _viewPlayerController.pause();
-    trainSceMan.pauseAll();
+    widget.soundMan.pauseAll();
     setState(() {
       _isShowingConfirmExit = true;
     });
@@ -169,10 +176,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   Future<void> pauseOrPlayVR({required bool pause}) async {
     if (pause) {
       await _viewPlayerController.pause();
-      trainSceMan.pauseAll();
+      widget.soundMan.pauseAll();
     } else {
       await _viewPlayerController.play();
-      trainSceMan.resumeAll();
+      widget.soundMan.resumeAll();
     }
 
     setState(() {
@@ -191,7 +198,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
       ..onPositionChange = onChangePosition
       ..onFinishedChange = onReceiveEnded;
     _viewPlayerController.loadVideo(
-      videoUrl: 'https://i.imgur.com/3WJFkSt.mp4',
+      videoUrl: widget.params.url,
     );
   }
 
@@ -215,12 +222,12 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   }
 
   void onReceiveDuration(int millis) {
-    trainSceMan.updatePosition(millis);
+    widget.soundMan.updatePosition(millis);
   }
 
   void onChangePosition(int millis) {
-    trainSceMan.updatePosition(millis);
-    trainSceMan.checkStopwatchForSounds();
+    widget.soundMan.updatePosition(millis);
+    widget.soundMan.checkStopwatchForSounds();
   }
 
   void onReceiveEnded(bool isFinished) {

@@ -9,11 +9,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_soloud: ^2.0.2
+  go_router: ^14.1.4
+  vr_player: ^0.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: "^0.9.0"
 
 flutter:
   uses-material-design: true
@@ -21,6 +25,44 @@ flutter:
     - family: Gulf
       fonts:
         - asset: assets/fonts/GulfsDisplay-Normal.ttf
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/RobotoFlex-VariableFont.ttf
+
+    - family: Dancing
+      fonts:
+        - asset: assets/fonts/Dancing-Script.ttf
+
+    - family: JostItalic
+      fonts:
+        - asset: assets/fonts/Jost-Italic.ttf
+
+    - family: Jost
+      fonts:
+        - asset: assets/fonts/Jost.ttf
+
+    - family: KarlaItalic
+      fonts:
+        - asset: assets/fonts/Karla-Italic.ttf
+
+    - family: Karla
+      fonts:
+        - asset: assets/fonts/Karla.ttf
+
+    - family: SignikaNegative
+      fonts:
+        - asset: assets/fonts/SignikaNegative.ttf
+
+    - family: UbuntuSansMonoItalic
+      fonts:
+        - asset: assets/fonts/UbuntuSansMono-Italic.ttf
+
+    - family: UbuntuSansMono
+      fonts:
+        - asset: assets/fonts/UbuntuSansMono.ttf
+
   assets:
     - assets/img/
     - assets/img/homepage icons/
+    - assets/img/homepage-icons-v2/

@@ -52,6 +52,8 @@ abstract class SoundManager {
   void updatePosition(int position) {
     this.currentPosition = position;
   }
+
+  Future<void> checkStopwatchForSounds();
 }
 
 class TrainStationSceMan extends SoundManager {
@@ -61,6 +63,7 @@ class TrainStationSceMan extends SoundManager {
 
   String nsAnnouncementPath = 'assets/ns.mp3';
 
+  @override
   Future<void> checkStopwatchForSounds() async {
     if (!shouldPlaySound(soundCertainty)) return;
 
@@ -68,5 +71,16 @@ class TrainStationSceMan extends SoundManager {
       case > 1400 && < 2000:
         await playSound(nsAnnouncementPath, posY: 50);
     }
+  }
+}
+
+class EmptySoundManager extends SoundManager {
+  EmptySoundManager(super.currentPosition, {super.soundCertainty}) {
+    soloud.init();
+  }
+
+  @override
+  Future<void> checkStopwatchForSounds() async {
+    print("Unimplemented method found!");
   }
 }
