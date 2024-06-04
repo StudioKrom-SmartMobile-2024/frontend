@@ -1,10 +1,12 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/models/experience_params.dart';
 import 'package:overload/models/experience_type.dart';
-import 'package:overload/utils/SoundManager.dart';
-import 'package:overload/widgets/vr-dialogues/ConfirmationDialogue.dart';
-import 'package:overload/widgets/vr-dialogues/SettingsOverlay.dart';
+import 'package:overload/utils/constants.dart';
+import 'package:overload/utils/sound_manager.dart';
+import 'package:overload/widgets/vr-overlays/confirmation_dialogue.dart';
+import 'package:overload/widgets/vr-overlays/settings_overlay.dart';
 import 'package:vr_player/vr_player.dart';
 import 'package:flutter/material.dart';
 
@@ -104,13 +106,20 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
                   right: 8,
                   top: 8,
                   child: IconButton(
-                    iconSize: 36,
+                    iconSize: DEFAULT_ICON_SIZE,
                     icon: const Icon(
                       Icons.settings,
                       color: Colors.white,
                     ),
                     onPressed: () => switchSettingsDisplay(true),
                   )),
+          if (isVideoLoading)
+            const Center(
+              child: SpinKitDualRing(
+                color: Colors.white,
+                size: 50.0,
+              ),
+            ),
           if (_isShowingConfirmExit)
             ConfirmationDialogue(
               onConfirm: confirmLeave,
@@ -122,7 +131,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
             ),
           if (_isDisclaimerShowing)
             ConfirmationDialogue(
-              onConfirm: onConfirmExperience,
+              onConfirm: confirmStart,
               onCancel: confirmLeave,
               popupDescription:
                   'This video contains intense sensory stimuli and may not be suitable for individuals with sensory overload. Viewer discretion is advised.',
@@ -135,7 +144,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
     );
   }
 
-  void onConfirmExperience() {
+  void confirmStart() {
     setState(() {
       _isDisclaimerShowing = false;
     });
@@ -203,7 +212,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   }
 
   void onReceiveState(VrState state) {
+    print("State: $state");
     switch (state) {
+      case VrState.buffering:
       case VrState.loading:
         setState(() {
           isVideoLoading = true;
@@ -215,7 +226,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
           isVideoReady = true;
         });
         break;
-      case VrState.buffering:
       case VrState.idle:
         break;
     }

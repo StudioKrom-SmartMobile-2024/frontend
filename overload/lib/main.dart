@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:overload/models/experience_intro_params.dart';
 import 'package:overload/models/experience_params.dart';
 import 'package:overload/pages/videoplayer.dart';
-import 'package:overload/widgets/experience-intro/experience_intro.dart';
+import 'package:overload/pages/experience_intro.dart';
 import 'package:overload/pages/welcome.dart';
 import 'package:overload/pages/home.dart';
 
