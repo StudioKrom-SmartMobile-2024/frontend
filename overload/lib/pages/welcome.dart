@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:overload/constants.dart';
-import 'package:overload/widgets/OverstimulateIntroAnimation.dart';
-import 'package:overload/widgets/gradient_button.dart';
+import 'package:overload/utils/constants.dart';
+import 'package:overload/widgets/animations/intro-animation.dart';
+import 'package:overload/widgets/common/gradient_button.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -42,6 +42,4 @@ class WelcomePage extends StatelessWidget {
       ),
     );
   }
-
-  void getStarted() {}
 }

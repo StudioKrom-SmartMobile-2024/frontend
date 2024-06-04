@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:overload/constants.dart';
+import 'package:overload/utils/constants.dart';
 import 'package:overload/widgets/experience_cards.dart';
 
 class HomePage extends StatefulWidget {

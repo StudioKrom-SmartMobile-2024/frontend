@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:overload/widgets/gradient_button.dart';
+import 'package:overload/utils/constants.dart';
+import 'package:overload/widgets/common/gradient_button.dart';
 
-class ConfirmLeaveDialogue extends StatelessWidget {
+class ConfirmationDialogue extends StatelessWidget {
   final Function onConfirm;
   final Function onCancel;
   final String popupDescription;
@@ -9,7 +10,7 @@ class ConfirmLeaveDialogue extends StatelessWidget {
   final String cancelText;
   final String popupTitle;
 
-  ConfirmLeaveDialogue({
+  ConfirmationDialogue({
     Key? key,
     required this.onConfirm,
     required this.onCancel,
@@ -55,28 +56,26 @@ class ConfirmLeaveDialogue extends StatelessWidget {
                       const Icon(
                         Icons.warning,
                         color: Colors.redAccent,
-                        size: 40,
+                        size: DEFAULT_ICON_SIZE,
                       ),
                       const SizedBox(
                         height: 8,
                       ),
-                      Text(
-                        popupTitle,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 34,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      Text(popupTitle,
+                          style: const TextStyle(
+                              fontSize: HEADER_FONTSIZE,
+                              color: COLOR_WHITE,
+                              fontFamily: FONT_GULF)),
                       const SizedBox(
                         height: 8,
                       ),
                       Text(
                         popupDescription,
                         style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
+                            color: Colors.white,
+                            fontSize: BODY_FONTSIZE,
+                            fontFamily: FONT_ROBOTO,
+                            fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -97,13 +96,7 @@ class ConfirmLeaveDialogue extends StatelessWidget {
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(18),
-                          child: Text(
-                            "Cancel",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                            ),
-                          ),
+                          child: Text("Cancel", style: SUBHEADER_TEXT_STYLE),
                         ),
                       ),
                     ),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:overload/models/experience_parameters.dart';
+import 'package:overload/models/experience_intro_params.dart';
 import 'package:overload/models/experience_params.dart';
-import 'package:overload/models/experience_type.dart';
-import 'package:overload/pages/VideoPlayer.dart';
-import 'package:overload/widgets/experience-intro/wave_painter.dart';
+import 'package:overload/pages/videoplayer.dart';
 import 'package:overload/widgets/experience-intro/experience_intro.dart';
 import 'package:overload/pages/welcome.dart';
 import 'package:overload/pages/home.dart';
@@ -96,7 +94,8 @@ class MainApp extends StatelessWidget {
                               "Screaming": Icons.campaign,
                             },
                             title: 'At the playground',
-                            description: '',
+                            description:
+                                'Enter a lively playground filled with the laughter of children running and playing. The sounds of squeaking swings, clanging metal bars, and playful shouts create an atmosphere of joy and energy. The smell of freshly cut grass, sunscreen, and snacks drifts through the air as parents watch over their kids and the sound of giggles and slides fills the air.',
                             strategies: {
                               "Avoid kids": Icons.route,
                               "Wear headset": Icons.headset,

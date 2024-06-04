@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:overload/constants.dart';
-import 'package:overload/models/experience_parameters.dart';
+import 'package:overload/utils/constants.dart';
+import 'package:overload/models/experience_intro_params.dart';
 import 'package:overload/models/experience_params.dart';
 import 'package:overload/models/experience_type.dart';
-import 'package:overload/widgets/experience-intro/wave_painter.dart';
-import 'package:overload/widgets/experience-intro/default_header.dart';
-import 'package:overload/widgets/gradient_button.dart';
+import 'package:overload/widgets/shapes/wave_painter.dart';
+import 'package:overload/widgets/common/default_header.dart';
+import 'package:overload/widgets/common/gradient_button.dart';
 
 class ExperienceIntro extends StatelessWidget {
   final ExperienceIntroParameters params;

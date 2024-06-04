@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:overload/constants.dart';
-import 'package:overload/widgets/MarqueeEffect.dart';
+import 'package:overload/utils/constants.dart';
+import 'package:overload/widgets/animations/marquee_effect.dart';
 
 class OverstimulateIntroAnimation extends StatefulWidget {
   const OverstimulateIntroAnimation({super.key});

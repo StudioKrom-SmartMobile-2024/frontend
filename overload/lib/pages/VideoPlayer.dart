@@ -59,9 +59,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   void dispose() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
     ]);
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
@@ -115,7 +112,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
                     onPressed: () => switchSettingsDisplay(true),
                   )),
           if (_isShowingConfirmExit)
-            ConfirmLeaveDialogue(
+            ConfirmationDialogue(
               onConfirm: confirmLeave,
               onCancel: cancelLeave,
               popupDescription: 'Are you sure you want to exit the experience?',
@@ -124,7 +121,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
               popupTitle: 'EXIT EXPERIENCE',
             ),
           if (_isDisclaimerShowing)
-            ConfirmLeaveDialogue(
+            ConfirmationDialogue(
               onConfirm: onConfirmExperience,
               onCancel: confirmLeave,
               popupDescription:
