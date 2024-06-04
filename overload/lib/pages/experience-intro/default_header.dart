@@ -3,7 +3,7 @@ import 'package:overload/constants.dart';
 
 class DefaultHeader extends StatelessWidget {
   final Color? color;
-  final Function? onPressBack;
+  final VoidCallback? onPressBack;
   final Function? onPressSettings;
 
   const DefaultHeader(
@@ -22,7 +22,7 @@ class DefaultHeader extends StatelessWidget {
                   icon: const Icon(Icons.arrow_back),
                   iconSize: DEFAULT_ICON_SIZE,
                   color: COLOR_BLACK,
-                  onPressed: () => onPressBack)
+                  onPressed: onPressBack)
               : const SizedBox(),
           onPressSettings != null
               ? IconButton(

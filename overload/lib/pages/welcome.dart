@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:overload/constants.dart';
 import 'package:overload/widgets/OverstimulateIntroAnimation.dart';
 import 'package:overload/widgets/gradient_button.dart';
@@ -30,7 +31,7 @@ class WelcomePage extends StatelessWidget {
                   const SizedBox(height: 20),
                   GradientButton(
                     text: "Get started now",
-                    onPress: getStarted,
+                    onPress: () => context.go("/home"),
                     iconData: Icons.chevron_right,
                   ),
                 ],

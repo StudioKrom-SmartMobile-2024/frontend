@@ -1,40 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:overload/constants.dart';
+import 'package:overload/models/experience_parameters.dart';
 import 'package:overload/pages/experience-intro/wave_painter.dart';
 import 'package:overload/pages/experience-intro/default_header.dart';
 import 'package:overload/widgets/gradient_button.dart';
 
 class ExperienceIntro extends StatelessWidget {
-  final String title;
-  final Map<String, IconData> overstimulationIndicators;
-  final String description;
-  final Map<String, IconData> strategies;
-  final Color color;
+  final ExperienceIntroParameters params;
+  final isButtonDisabled;
 
-  const ExperienceIntro(
-      {super.key,
-      required this.overstimulationIndicators,
-      required this.title,
-      required this.description,
-      required this.strategies,
-      required this.color});
+  ExperienceIntro({super.key, required this.params})
+      : isButtonDisabled = params.url == '';
 
   List<Widget> buildIndicators() {
-    return overstimulationIndicators.entries.map((entry) {
+    return params.indicators.entries.map((entry) {
       return Chip(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
         side: BorderSide.none,
         backgroundColor: COLOR_GRAY,
-        avatar: Icon(entry.value, color: color),
+        avatar: Icon(entry.value, color: params.color),
         label: Text(entry.key, style: DETAILS_TEXT_STYLE),
       );
     }).toList();
   }
 
   List<Widget> buildStrategies() {
-    return strategies.entries.map((entry) {
+    return params.strategies.entries.map((entry) {
       return Container(
         width: 100,
         height: 125,
@@ -73,14 +67,14 @@ class ExperienceIntro extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       DefaultHeader(
-        onPressBack: onPressBack,
+        onPressBack: () => context.pop(),
         onPressSettings: onPressSettings,
-        color: color,
+        color: params.color,
       ),
       ClipRect(
         child: CustomPaint(
           size: const Size(double.infinity, 100),
-          painter: WavePainter(waveColor: color),
+          painter: WavePainter(waveColor: params.color),
         ),
       ),
       Padding(
@@ -89,14 +83,14 @@ class ExperienceIntro extends StatelessWidget {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: HEADER_TEXT_STYLE),
+            Text(params.title, style: HEADER_TEXT_STYLE),
             Wrap(
               spacing: 10,
               runSpacing: 4,
               children: buildIndicators(),
             ),
             const SizedBox(height: paddingBetween),
-            Text(description, style: BODY_TEXT_STYLE),
+            Text(params.description, style: BODY_TEXT_STYLE),
             const SizedBox(height: paddingBetween),
             const Text('Strategies', style: HEADER_TEXT_STYLE),
             const Text(
@@ -113,7 +107,7 @@ class ExperienceIntro extends StatelessWidget {
               children: [
                 const Expanded(flex: 1, child: SizedBox()),
                 GradientButton(
-                  onPress: onPressProceed,
+                  onPress: isButtonDisabled ? null : () => context.go('/home'),
                   text: "Proceed",
                   iconData: Icons.chevron_right,
                 ),
@@ -126,6 +120,5 @@ class ExperienceIntro extends StatelessWidget {
   }
 
   void onPressProceed() {}
-  void onPressBack() {}
   void onPressSettings() {}
 }

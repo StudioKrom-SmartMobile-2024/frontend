@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:overload/constants.dart';
 import 'package:overload/widgets/experience_cards.dart';
 
@@ -53,28 +54,28 @@ class _HomePageState extends State<HomePage> {
                           "The Mall",
                           "Bright lights and colors",
                           "assets/img/homepage-icons-v2/shopping_mall.png",
-                          onPress: () => onButtonPressed,
+                          onPress: () => context.go('/home/intro/mall'),
                         ),
                         const SizedBox(height: 25),
                         ExperienceCards(
                           "Train Station",
                           "Transit Rush",
                           "assets/img/homepage-icons-v2/train_station.png",
-                          onPress: () => onButtonPressed,
+                          onPress: () => context.go('/home/intro/station'),
                         ),
                         const SizedBox(height: 25),
                         ExperienceCards(
                           "Playground",
                           "Kid's POV",
                           "assets/img/homepage-icons-v2/playground.png",
-                          onPress: () => onButtonPressed,
+                          onPress: () => context.go('/home/intro/playground'),
                         ),
                         const SizedBox(height: 25),
                         ExperienceCards(
                           "A Concert",
                           "Live noise and crowd",
                           "assets/img/homepage-icons-v2/stage.png",
-                          onPress: () => onButtonPressed,
+                          onPress: () => context.go('/home/intro/concert'),
                         ),
                       ],
                     ),
@@ -87,6 +88,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  void onButtonPressed() {}
 }
