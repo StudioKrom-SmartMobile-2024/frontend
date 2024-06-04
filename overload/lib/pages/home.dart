@@ -16,12 +16,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/img/Jorrieborrie.png', //!change this to background png
-              fit: BoxFit.cover,
-            ),
-          ),
+          // Positioned.fill(
+          //   child: Image.asset(
+          //     'assets/img/Jorrieborrie.png', //!change this to background png
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(32),

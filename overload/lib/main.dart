@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/models/experience_parameters.dart';
-import 'package:overload/pages/experience-intro/wave_painter.dart';
-import 'package:overload/pages/experience-intro/experience_intro.dart';
+import 'package:overload/models/experience_params.dart';
+import 'package:overload/models/experience_type.dart';
+import 'package:overload/pages/VideoPlayer.dart';
+import 'package:overload/widgets/experience-intro/wave_painter.dart';
+import 'package:overload/widgets/experience-intro/experience_intro.dart';
 import 'package:overload/pages/welcome.dart';
 import 'package:overload/pages/home.dart';
 
@@ -26,6 +29,15 @@ class MainApp extends StatelessWidget {
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
           return const WelcomePage();
+        },
+      ),
+      GoRoute(
+        path: '/experience',
+        builder: (BuildContext context, GoRouterState state) {
+          ExperienceParams params = state.extra as ExperienceParams;
+          return VideoPlayerPage(
+            params: params,
+          );
         },
       ),
       GoRoute(

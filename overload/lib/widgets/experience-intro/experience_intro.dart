@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/constants.dart';
 import 'package:overload/models/experience_parameters.dart';
-import 'package:overload/pages/experience-intro/wave_painter.dart';
-import 'package:overload/pages/experience-intro/default_header.dart';
+import 'package:overload/models/experience_params.dart';
+import 'package:overload/models/experience_type.dart';
+import 'package:overload/widgets/experience-intro/wave_painter.dart';
+import 'package:overload/widgets/experience-intro/default_header.dart';
 import 'package:overload/widgets/gradient_button.dart';
 
 class ExperienceIntro extends StatelessWidget {
   final ExperienceIntroParameters params;
-  final isButtonDisabled;
+  final bool isButtonDisabled;
 
   ExperienceIntro({super.key, required this.params})
       : isButtonDisabled = params.url == '';
@@ -107,7 +109,9 @@ class ExperienceIntro extends StatelessWidget {
               children: [
                 const Expanded(flex: 1, child: SizedBox()),
                 GradientButton(
-                  onPress: isButtonDisabled ? null : () => context.go('/home'),
+                  onPress: isButtonDisabled
+                      ? null
+                      : () => onPressProceed(context, params),
                   text: "Proceed",
                   iconData: Icons.chevron_right,
                 ),
@@ -119,6 +123,11 @@ class ExperienceIntro extends StatelessWidget {
     ])));
   }
 
-  void onPressProceed() {}
+  void onPressProceed(BuildContext context, ExperienceIntroParameters params) {
+    var parameters = ExperienceParams(
+        url: params.url, type: ExperienceType.trainStation, soundCertainty: 1);
+    context.go("/experience", extra: parameters);
+  }
+
   void onPressSettings() {}
 }
