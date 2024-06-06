@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:overload/utils/constants.dart';
 
 class ToggleSetting extends StatelessWidget {
   final String text;

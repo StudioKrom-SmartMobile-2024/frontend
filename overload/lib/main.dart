@@ -10,19 +10,26 @@ import 'package:overload/pages/welcome.dart';
 import 'package:overload/pages/home.dart';
 import 'package:overload/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   var isDarkMode = prefs.getBool('darkmode') ?? false;
+  var locale = prefs.getString('locale') ?? 'en';
   ThemeMode initialThemeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
-  runApp(MainApp(initialThemeMode: initialThemeMode));
+  runApp(MainApp(
+    initialThemeMode: initialThemeMode,
+    localeCode: locale,
+  ));
 }
 
 class MainApp extends StatefulWidget {
   final ThemeMode initialThemeMode;
+  final String localeCode;
 
-  MainApp({super.key, required this.initialThemeMode});
+  MainApp(
+      {super.key, required this.initialThemeMode, required this.localeCode});
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -32,21 +39,29 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  late String _localeCode;
   late ThemeMode _themeMode;
 
   @override
   void initState() {
     super.initState();
     _themeMode = widget.initialThemeMode;
+    _localeCode = widget.localeCode;
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      locale: Locale(_localeCode),
       routerConfig: _router,
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: _themeMode,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('nl', ''),
+      ],
     );
   }
 
@@ -54,7 +69,12 @@ class _MainAppState extends State<MainApp> {
     setState(() {
       _themeMode = themeMode;
     });
-    print("Theme set to $themeMode");
+  }
+
+  void setLocale(String localeCode) {
+    setState(() {
+      _localeCode = localeCode;
+    });
   }
 
   final GoRouter _router = GoRouter(
@@ -96,16 +116,21 @@ class _MainAppState extends State<MainApp> {
                         params: ExperienceIntroParameters(
                       url: '',
                       indicators: {
-                        "Crowds": Icons.people,
-                        "Noise": Icons.volume_up,
+                        AppLocalizations.of(context)!.triggerCrowds:
+                            Icons.people,
+                        AppLocalizations.of(context)!.triggerNoise:
+                            Icons.volume_up,
                       },
-                      title: 'The Mall',
+                      title: AppLocalizations.of(context)!.theMallTitle,
                       description:
-                          'Enter a lively shopping center filled with colorful advertisements, loud chatter, and diverse store sounds. Experience the sensory overload of a day spent at the mall.',
+                          AppLocalizations.of(context)!.theMallDescriptionLong,
                       strategies: {
-                        "Wear headphones": Icons.headphones,
-                        "Go with friends": Icons.group,
-                        "Go with family": Icons.group
+                        AppLocalizations.of(context)!.strategyHeadphones:
+                            Icons.headphones,
+                        AppLocalizations.of(context)!.strategyFriends:
+                            Icons.group,
+                        AppLocalizations.of(context)!.strategyFamily:
+                            Icons.group
                       },
                       color: const Color(0xffFF2F26),
                     ));
@@ -114,16 +139,22 @@ class _MainAppState extends State<MainApp> {
                         params: ExperienceIntroParameters(
                             url: 'https://i.imgur.com/3WJFkSt.mp4',
                             indicators: {
-                              "Vehicles": Icons.train,
-                              "Crowds": Icons.people,
-                              "Noise": Icons.volume_up,
+                              AppLocalizations.of(context)!.triggerVehicles:
+                                  Icons.train,
+                              AppLocalizations.of(context)!.triggerCrowds:
+                                  Icons.people,
+                              AppLocalizations.of(context)!.triggerNoise:
+                                  Icons.volume_up,
                             },
-                            title: 'Train station',
-                            description:
-                                'Step into a bustling train station filled with the hustle and bustle of commuters rushing to catch their rides. The sound of trains arriving and departing, the PA system announcing arrivals and delays, and the chatter of passengers creates a symphony of noise. The smell of coffee, food vendors, and exhaust fumes fills the air as people weave in and out of the crowds.',
+                            title:
+                                AppLocalizations.of(context)!.theStationTitle,
+                            description: AppLocalizations.of(context)!
+                                .theStationDescriptionLong,
                             strategies: {
-                              "Wear headphones": Icons.headphones,
-                              "Go with friends": Icons.group,
+                              AppLocalizations.of(context)!.strategyHeadphones:
+                                  Icons.headphones,
+                              AppLocalizations.of(context)!.strategyFriends:
+                                  Icons.group,
                             },
                             color: const Color(0xffFEAC01)));
                   case "playground":
@@ -131,16 +162,22 @@ class _MainAppState extends State<MainApp> {
                         params: ExperienceIntroParameters(
                             url: '',
                             indicators: {
-                              "Kids": Icons.family_restroom,
-                              "Crowds": Icons.people,
-                              "Screaming": Icons.campaign,
+                              AppLocalizations.of(context)!.triggerKids:
+                                  Icons.family_restroom,
+                              AppLocalizations.of(context)!.triggerCrowds:
+                                  Icons.people,
+                              AppLocalizations.of(context)!.triggerScreaming:
+                                  Icons.campaign,
                             },
-                            title: 'At the playground',
-                            description:
-                                'Enter a lively playground filled with the laughter of children running and playing. The sounds of squeaking swings, clanging metal bars, and playful shouts create an atmosphere of joy and energy. The smell of freshly cut grass, sunscreen, and snacks drifts through the air as parents watch over their kids and the sound of giggles and slides fills the air.',
+                            title: AppLocalizations.of(context)!
+                                .thePlaygroundTitle,
+                            description: AppLocalizations.of(context)!
+                                .thePlaygroundDescriptionLong,
                             strategies: {
-                              "Avoid kids": Icons.route,
-                              "Wear headset": Icons.headset,
+                              AppLocalizations.of(context)!.strategyAvoidKids:
+                                  Icons.route,
+                              AppLocalizations.of(context)!.strategyHeadphones:
+                                  Icons.headset,
                             },
                             color: const Color(0xffC3F3B3)));
 
@@ -149,16 +186,22 @@ class _MainAppState extends State<MainApp> {
                         params: ExperienceIntroParameters(
                             url: '',
                             indicators: {
-                              "Loud": Icons.volume_up,
-                              "Crowds": Icons.people,
-                              "Lights": Icons.lightbulb,
+                              AppLocalizations.of(context)!.triggerLoud:
+                                  Icons.volume_up,
+                              AppLocalizations.of(context)!.triggerCrowds:
+                                  Icons.people,
+                              AppLocalizations.of(context)!.triggerLights:
+                                  Icons.lightbulb,
                             },
-                            title: 'At a concert',
-                            description:
-                                'Feel the energy of a packed concert venue as the music fills the air and the crowd roars with excitement. The thumping bass, screaming fans, and vibrant lights create a sensory overload of sound and sight. The smell of sweat, beer, and popcorn mingles with the excitement as the performers take the stage and the music starts to play.',
+                            title:
+                                AppLocalizations.of(context)!.theConcertTitle,
+                            description: AppLocalizations.of(context)!
+                                .theConcertDescriptionLong,
                             strategies: {
-                              "Earplugs": Icons.headphones,
-                              "Go with friends": Icons.group,
+                              AppLocalizations.of(context)!.strategyEarplugs:
+                                  Icons.headphones,
+                              AppLocalizations.of(context)!.strategyFriends:
+                                  Icons.group,
                             },
                             color: const Color(0xff07BFEB)));
 

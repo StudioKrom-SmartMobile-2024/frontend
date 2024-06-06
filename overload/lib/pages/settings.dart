@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/main.dart';
-import 'package:overload/utils/constants.dart';
 import 'package:overload/widgets/common/default_header.dart';
 import 'package:overload/widgets/common/toggle_row.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -14,6 +14,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool isDarkMode = false;
   bool useGestures = false;
+  String _selectedLanguage = 'en';
 
   @override
   void initState() {
@@ -25,7 +26,17 @@ class _SettingsPageState extends State<SettingsPage> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       isDarkMode = prefs.getBool('darkmode') ?? false;
+      _selectedLanguage = prefs.getString('locale') ?? 'en';
     });
+  }
+
+  void _changeLanguage(String languageCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('locale', languageCode);
+    setState(() {
+      _selectedLanguage = languageCode;
+    });
+    MainApp.of(context).setLocale(languageCode);
   }
 
   @override
@@ -46,25 +57,64 @@ class _SettingsPageState extends State<SettingsPage> {
                     paddingHorizontal: 0,
                   ),
                   Text(
-                    "Settings",
+                    AppLocalizations.of(context)!.settings,
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   const SizedBox(height: heightBetween),
                   ToggleSetting(
-                    text: 'Dark mode',
+                    text: AppLocalizations.of(context)!.darkMode,
                     isToggled: isDarkMode,
                     changeValue: toggleDarkMode,
                   ),
                   const SizedBox(height: heightBetween),
                   ToggleSetting(
-                    text: 'Shake head to pause video',
+                    text: AppLocalizations.of(context)!.toggleGestures,
                     isToggled: useGestures,
                     changeValue: toggleGestures,
-                    child: const SizedBox(
-                      height: 150,
-                      child: Placeholder(),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.asset(
+                        "assets/img/shake_gesture.gif",
+                        fit: BoxFit.contain,
+                        gaplessPlayback: true,
+                      ),
                     ),
                   ),
+                  const SizedBox(height: heightBetween),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.selectedLanguage,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        DropdownButton<String>(
+                          value: _selectedLanguage,
+                          onChanged: (String? newValue) {
+                            if (newValue != null) {
+                              _changeLanguage(newValue);
+                            }
+                          },
+                          items: <String>['en', 'nl']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value == 'en'
+                                  ? 'English (EN)'
+                                  : 'Dutch (NL)'),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: heightBetween),
                 ],
               ),
             ),
@@ -84,7 +134,7 @@ class _SettingsPageState extends State<SettingsPage> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool('darkmode', !isDarkMode);
     setState(() {
-      isDarkMode = value ?? false;
+      isDarkMode = value;
     });
     print(prefs.getBool('darkmode'));
     isDarkMode

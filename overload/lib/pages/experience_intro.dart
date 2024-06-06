@@ -7,6 +7,7 @@ import 'package:overload/models/experience_type.dart';
 import 'package:overload/widgets/shapes/wave_painter.dart';
 import 'package:overload/widgets/common/default_header.dart';
 import 'package:overload/widgets/common/gradient_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ExperienceIntro extends StatelessWidget {
   final ExperienceIntroParameters params;
@@ -96,10 +97,9 @@ class ExperienceIntro extends StatelessWidget {
             Text(params.description,
                 style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: paddingBetween),
-            Text('Strategies',
+            Text(AppLocalizations.of(context)!.strategiesTitle,
                 style: Theme.of(context).textTheme.headlineMedium),
-            Text(
-                "If you notice that you or a close one experiences sensory issues in such environment these are common helping tricks:",
+            Text(AppLocalizations.of(context)!.strategiesDescription,
                 style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: paddingBetween),
             Wrap(
@@ -115,7 +115,7 @@ class ExperienceIntro extends StatelessWidget {
                   onPress: isButtonDisabled
                       ? null
                       : () => onPressProceed(context, params),
-                  text: "Proceed",
+                  text: AppLocalizations.of(context)!.confirmEnterVR,
                   iconData: Icons.chevron_right,
                 ),
               ],
