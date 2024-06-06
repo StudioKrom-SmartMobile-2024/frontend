@@ -18,21 +18,19 @@ class WelcomePage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               bottom: 30,
               child: Container(
-                color: COLOR_WHITE,
+                color: Theme.of(context).colorScheme.primary,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const Text(
-                        "FEELING OVERWELMED?",
-                        style: TITLE_TEXT_STYLE,
-                      ),
+                      Text("FEELING OVERWELMED?",
+                          style: Theme.of(context).textTheme.titleLarge),
                       const SizedBox(height: 10),
-                      const Text(
+                      Text(
                         "Discover the world first-hand as it is for those suffering from sensory overload",
-                        style: BODY_TEXT_STYLE,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(height: 20),
                       GradientButton(

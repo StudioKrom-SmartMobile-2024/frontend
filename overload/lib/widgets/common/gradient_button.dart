@@ -36,13 +36,24 @@ class GradientButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(text,
-                      style: SUBHEADER_TEXT_STYLE.copyWith(
-                        color: disabled ? Colors.black26 : Colors.black,
-                      )),
+                      style:
+                          Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                color: disabled
+                                    ? Theme.of(context)
+                                        .colorScheme
+                                        .onPrimary
+                                        .withOpacity(0.3)
+                                    : Theme.of(context).colorScheme.onPrimary,
+                              )),
                   if (iconData != null)
                     Icon(
                       iconData,
-                      color: disabled ? Colors.black26 : Colors.black,
+                      color: disabled
+                          ? Theme.of(context)
+                              .colorScheme
+                              .onPrimary
+                              .withOpacity(0.3)
+                          : Theme.of(context).colorScheme.onPrimary,
                       size: DEFAULT_ICON_SIZE,
                     )
                 ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/utils/constants.dart';
+import 'package:overload/widgets/common/default_header.dart';
 import 'package:overload/widgets/experience_cards.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,28 +25,21 @@ class _HomePageState extends State<HomePage> {
           // ),
           Center(
             child: Padding(
-              padding: const EdgeInsets.all(32),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Align(
-                    alignment: Alignment.topRight,
-                    child: Icon(
-                      Icons.settings,
-                      color: Colors.black,
-                      size: 38,
-                    ),
+                  DefaultHeader(
+                    onPressSettings: () => context.go('/home/settings'),
+                    paddingHorizontal: 0,
                   ),
                   const SizedBox(height: 25),
-                  const Text(
-                    "Overstimulating experiences",
-                    style: HEADER_TEXT_STYLE,
-                  ),
+                  Text("Overstimulating experiences",
+                      style: Theme.of(context).textTheme.headlineLarge),
                   const SizedBox(height: 10),
-                  const Text(
-                    "Experience the world as it is for those who struggle with sensory overload on a daily basis.",
-                    style: BODY_TEXT_STYLE,
-                  ),
+                  Text(
+                      "Experience the world as it is for those who struggle with sensory overload on a daily basis.",
+                      style: Theme.of(context).textTheme.bodyLarge),
                   Expanded(
                     child: ListView(
                       padding: const EdgeInsets.only(top: 25),

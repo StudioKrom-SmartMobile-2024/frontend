@@ -15,7 +15,7 @@ class ExperienceIntro extends StatelessWidget {
   ExperienceIntro({super.key, required this.params})
       : isButtonDisabled = params.url == '';
 
-  List<Widget> buildIndicators() {
+  List<Widget> buildIndicators(BuildContext context) {
     return params.indicators.entries.map((entry) {
       return Chip(
         shape: RoundedRectangleBorder(
@@ -24,12 +24,12 @@ class ExperienceIntro extends StatelessWidget {
         side: BorderSide.none,
         backgroundColor: COLOR_GRAY,
         avatar: Icon(entry.value, color: params.color),
-        label: Text(entry.key, style: DETAILS_TEXT_STYLE),
+        label: Text(entry.key, style: Theme.of(context).textTheme.bodySmall),
       );
     }).toList();
   }
 
-  List<Widget> buildStrategies() {
+  List<Widget> buildStrategies(BuildContext context) {
     return params.strategies.entries.map((entry) {
       return Container(
         width: 100,
@@ -46,12 +46,12 @@ class ExperienceIntro extends StatelessWidget {
           children: [
             Icon(
               entry.value,
-              color: COLOR_BLACK,
+              color: Theme.of(context).colorScheme.onSecondary,
               size: DEFAULT_ICON_SIZE,
             ),
             Text(
               entry.key,
-              style: BODY_TEXT_STYLE,
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
           ],
@@ -70,7 +70,7 @@ class ExperienceIntro extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       DefaultHeader(
         onPressBack: () => context.pop(),
-        onPressSettings: onPressSettings,
+        onPressSettings: () => context.go('/home/settings'),
         color: params.color,
       ),
       ClipRect(
@@ -85,24 +85,27 @@ class ExperienceIntro extends StatelessWidget {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(params.title, style: HEADER_TEXT_STYLE),
+            Text(params.title,
+                style: Theme.of(context).textTheme.headlineLarge),
             Wrap(
               spacing: 10,
               runSpacing: 4,
-              children: buildIndicators(),
+              children: buildIndicators(context),
             ),
             const SizedBox(height: paddingBetween),
-            Text(params.description, style: BODY_TEXT_STYLE),
+            Text(params.description,
+                style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: paddingBetween),
-            const Text('Strategies', style: HEADER_TEXT_STYLE),
-            const Text(
+            Text('Strategies',
+                style: Theme.of(context).textTheme.headlineMedium),
+            Text(
                 "If you notice that you or a close one experiences sensory issues in such environment these are common helping tricks:",
-                style: BODY_TEXT_STYLE),
+                style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: paddingBetween),
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: buildStrategies(),
+              children: buildStrategies(context),
             ),
             const SizedBox(height: paddingBetween),
             Row(
@@ -128,6 +131,4 @@ class ExperienceIntro extends StatelessWidget {
         url: params.url, type: ExperienceType.trainStation, soundCertainty: 1);
     context.go("/experience", extra: parameters);
   }
-
-  void onPressSettings() {}
 }

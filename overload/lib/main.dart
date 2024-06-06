@@ -1,24 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/models/experience_intro_params.dart';
 import 'package:overload/models/experience_params.dart';
+import 'package:overload/pages/settings.dart';
 import 'package:overload/pages/videoplayer.dart';
 import 'package:overload/pages/experience_intro.dart';
 import 'package:overload/pages/welcome.dart';
 import 'package:overload/pages/home.dart';
+import 'package:overload/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  var isDarkMode = prefs.getBool('darkmode') ?? false;
+  ThemeMode initialThemeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
+  runApp(MainApp(initialThemeMode: initialThemeMode));
 }
 
-class MainApp extends StatelessWidget {
-  MainApp({super.key});
+class MainApp extends StatefulWidget {
+  final ThemeMode initialThemeMode;
+
+  MainApp({super.key, required this.initialThemeMode});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+
+  static _MainAppState of(BuildContext context) =>
+      context.findAncestorStateOfType<_MainAppState>()!;
+}
+
+class _MainAppState extends State<MainApp> {
+  late ThemeMode _themeMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _themeMode = widget.initialThemeMode;
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: _router,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: _themeMode,
     );
+  }
+
+  void changeTheme(ThemeMode themeMode) {
+    setState(() {
+      _themeMode = themeMode;
+    });
+    print("Theme set to $themeMode");
   }
 
   final GoRouter _router = GoRouter(
@@ -44,6 +80,12 @@ class MainApp extends StatelessWidget {
             return const HomePage();
           },
           routes: [
+            GoRoute(
+              path: 'settings',
+              builder: (BuildContext context, GoRouterState state) {
+                return SettingsPage();
+              },
+            ),
             GoRoute(
               path: 'intro/:experienceName',
               builder: (BuildContext context, GoRouterState state) {

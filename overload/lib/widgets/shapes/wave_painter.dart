@@ -25,7 +25,7 @@ class WavePainter extends CustomPainter {
       ..lineTo(0, 0)
       ..close();
 
-    canvas.drawPath(path, paint);
+    canvas.drawPath(path.shift(Offset(0, -0.5)), paint);
   }
 
   @override

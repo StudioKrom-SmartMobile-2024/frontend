@@ -18,7 +18,7 @@ class ExperienceCards extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
-          color: COLOR_GRAY,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         child: Row(
           children: [
@@ -57,20 +57,21 @@ class ExperienceCards extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: SUBHEADER_TEXT_STYLE,
+                      style: Theme.of(context).textTheme.headlineMedium,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       text,
-                      style: BODY_TEXT_STYLE,
+                      style: Theme.of(context).textTheme.bodyLarge,
                       softWrap: true,
                     ),
                   ],
                 ),
               ),
             ),
-            const Icon(Icons.east,
-                color: Colors.black, size: DEFAULT_ICON_SIZE),
+            Icon(Icons.east,
+                color: Theme.of(context).colorScheme.onPrimary,
+                size: DEFAULT_ICON_SIZE),
           ],
         ),
       ),

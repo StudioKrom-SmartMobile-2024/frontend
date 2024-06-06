@@ -90,6 +90,7 @@ class ConfirmationDialogue extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () => onCancel(),
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
