@@ -23,7 +23,7 @@ class ExperienceIntro extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.0),
         ),
         side: BorderSide.none,
-        backgroundColor: COLOR_GRAY,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         avatar: Icon(entry.value, color: params.color),
         label: Text(entry.key, style: Theme.of(context).textTheme.bodySmall),
       );
@@ -37,7 +37,7 @@ class ExperienceIntro extends StatelessWidget {
         height: 125,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: COLOR_GRAY,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         alignment: Alignment.center,
         padding: const EdgeInsets.all(15.0),
