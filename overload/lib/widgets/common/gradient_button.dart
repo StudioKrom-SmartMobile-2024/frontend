@@ -41,9 +41,9 @@ class GradientButton extends StatelessWidget {
                                 color: disabled
                                     ? Theme.of(context)
                                         .colorScheme
-                                        .onPrimary
+                                        .primary
                                         .withOpacity(0.3)
-                                    : Theme.of(context).colorScheme.onPrimary,
+                                    : Theme.of(context).colorScheme.primary,
                               )),
                   if (iconData != null)
                     Icon(
@@ -51,9 +51,9 @@ class GradientButton extends StatelessWidget {
                       color: disabled
                           ? Theme.of(context)
                               .colorScheme
-                              .onPrimary
+                              .primary
                               .withOpacity(0.3)
-                          : Theme.of(context).colorScheme.onPrimary,
+                          : Theme.of(context).colorScheme.primary,
                       size: DEFAULT_ICON_SIZE,
                     )
                 ],

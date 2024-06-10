@@ -71,7 +71,7 @@ class ExperienceIntro extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       DefaultHeader(
         onPressBack: () => context.pop(),
-        onPressSettings: () => context.go('/home/settings'),
+        onPressSettings: () => context.go(SETTINGS_ROUTE),
         color: params.color,
       ),
       ClipRect(
@@ -129,6 +129,6 @@ class ExperienceIntro extends StatelessWidget {
   void onPressProceed(BuildContext context, ExperienceIntroParameters params) {
     var parameters = ExperienceParams(
         url: params.url, type: ExperienceType.trainStation, soundCertainty: 1);
-    context.go("/experience", extra: parameters);
+    context.go(EXPERIENCE_ROUTE, extra: parameters);
   }
 }

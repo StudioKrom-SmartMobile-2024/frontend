@@ -44,7 +44,7 @@ class ToggleSetting extends StatelessWidget {
                   activeColor: Colors.white,
                   activeTrackColor: Colors.green,
                   inactiveThumbColor: Colors.white,
-                  inactiveTrackColor: Colors.red,
+                  inactiveTrackColor: Colors.grey,
                   onChanged: (bool value) {
                     changeValue(value);
                   },

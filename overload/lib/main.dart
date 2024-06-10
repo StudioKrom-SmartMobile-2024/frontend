@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/models/experience_intro_params.dart';
 import 'package:overload/models/experience_params.dart';
+import 'package:overload/pages/experience_rating.dart';
 import 'package:overload/pages/settings.dart';
 import 'package:overload/pages/videoplayer.dart';
 import 'package:overload/pages/experience_intro.dart';
@@ -51,6 +55,9 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
     return MaterialApp.router(
       locale: Locale(_localeCode),
       routerConfig: _router,
@@ -77,140 +84,145 @@ class _MainAppState extends State<MainApp> {
     });
   }
 
-  final GoRouter _router = GoRouter(
-    routes: <RouteBase>[
-      GoRoute(
-        path: '/',
+  final GoRouter _router = GoRouter(observers: [
+    MyNavigatorObserver(),
+  ], routes: <RouteBase>[
+    GoRoute(
+      path: WELCOME_ROUTE,
+      builder: (BuildContext context, GoRouterState state) {
+        return const WelcomePage();
+      },
+    ),
+    GoRoute(
+      path: EXPERIENCE_ROUTE,
+      builder: (BuildContext context, GoRouterState state) {
+        ExperienceParams params = state.extra as ExperienceParams;
+        return VideoPlayerPage(
+          params: params,
+        );
+      },
+    ),
+    GoRoute(
+      path: SETTINGS_ROUTE,
+      builder: (BuildContext context, GoRouterState state) {
+        return SettingsPage();
+      },
+    ),
+    GoRoute(
+        path: RATE_ROUTE,
         builder: (BuildContext context, GoRouterState state) {
-          return const WelcomePage();
-        },
-      ),
-      GoRoute(
-        path: '/experience',
-        builder: (BuildContext context, GoRouterState state) {
-          ExperienceParams params = state.extra as ExperienceParams;
-          return VideoPlayerPage(
-            params: params,
-          );
-        },
-      ),
-      GoRoute(
-          path: '/home',
-          builder: (BuildContext context, GoRouterState state) {
-            return const HomePage();
-          },
-          routes: [
-            GoRoute(
-              path: 'settings',
-              builder: (BuildContext context, GoRouterState state) {
-                return SettingsPage();
+          return RateExperience();
+        }),
+    GoRoute(
+      path: HOME_ROUTE,
+      builder: (BuildContext context, GoRouterState state) {
+        return const HomePage();
+      },
+    ),
+    GoRoute(
+      path: INTRO_EXPERIENCE_BASE_ROUTE,
+      builder: (BuildContext context, GoRouterState state) {
+        final experienceName = state.pathParameters['experienceName'];
+        switch (experienceName) {
+          case "mall":
+            return ExperienceIntro(
+                params: ExperienceIntroParameters(
+              url: '',
+              indicators: {
+                AppLocalizations.of(context)!.triggerCrowds: Icons.people,
+                AppLocalizations.of(context)!.triggerNoise: Icons.volume_up,
               },
-            ),
-            GoRoute(
-              path: 'intro/:experienceName',
-              builder: (BuildContext context, GoRouterState state) {
-                final experienceName = state.pathParameters['experienceName'];
-                switch (experienceName) {
-                  case "mall":
-                    return ExperienceIntro(
-                        params: ExperienceIntroParameters(
-                      url: '',
-                      indicators: {
-                        AppLocalizations.of(context)!.triggerCrowds:
-                            Icons.people,
-                        AppLocalizations.of(context)!.triggerNoise:
-                            Icons.volume_up,
-                      },
-                      title: AppLocalizations.of(context)!.theMallTitle,
-                      description:
-                          AppLocalizations.of(context)!.theMallDescriptionLong,
-                      strategies: {
-                        AppLocalizations.of(context)!.strategyHeadphones:
-                            Icons.headphones,
-                        AppLocalizations.of(context)!.strategyFriends:
-                            Icons.group,
-                        AppLocalizations.of(context)!.strategyFamily:
-                            Icons.group
-                      },
-                      color: const Color(0xffFF2F26),
-                    ));
-                  case "station":
-                    return ExperienceIntro(
-                        params: ExperienceIntroParameters(
-                            url: 'https://i.imgur.com/3WJFkSt.mp4',
-                            indicators: {
-                              AppLocalizations.of(context)!.triggerVehicles:
-                                  Icons.train,
-                              AppLocalizations.of(context)!.triggerCrowds:
-                                  Icons.people,
-                              AppLocalizations.of(context)!.triggerNoise:
-                                  Icons.volume_up,
-                            },
-                            title:
-                                AppLocalizations.of(context)!.theStationTitle,
-                            description: AppLocalizations.of(context)!
-                                .theStationDescriptionLong,
-                            strategies: {
-                              AppLocalizations.of(context)!.strategyHeadphones:
-                                  Icons.headphones,
-                              AppLocalizations.of(context)!.strategyFriends:
-                                  Icons.group,
-                            },
-                            color: const Color(0xffFEAC01)));
-                  case "playground":
-                    return ExperienceIntro(
-                        params: ExperienceIntroParameters(
-                            url: '',
-                            indicators: {
-                              AppLocalizations.of(context)!.triggerKids:
-                                  Icons.family_restroom,
-                              AppLocalizations.of(context)!.triggerCrowds:
-                                  Icons.people,
-                              AppLocalizations.of(context)!.triggerScreaming:
-                                  Icons.campaign,
-                            },
-                            title: AppLocalizations.of(context)!
-                                .thePlaygroundTitle,
-                            description: AppLocalizations.of(context)!
-                                .thePlaygroundDescriptionLong,
-                            strategies: {
-                              AppLocalizations.of(context)!.strategyAvoidKids:
-                                  Icons.route,
-                              AppLocalizations.of(context)!.strategyHeadphones:
-                                  Icons.headset,
-                            },
-                            color: const Color(0xffC3F3B3)));
-
-                  case "concert":
-                    return ExperienceIntro(
-                        params: ExperienceIntroParameters(
-                            url: '',
-                            indicators: {
-                              AppLocalizations.of(context)!.triggerLoud:
-                                  Icons.volume_up,
-                              AppLocalizations.of(context)!.triggerCrowds:
-                                  Icons.people,
-                              AppLocalizations.of(context)!.triggerLights:
-                                  Icons.lightbulb,
-                            },
-                            title:
-                                AppLocalizations.of(context)!.theConcertTitle,
-                            description: AppLocalizations.of(context)!
-                                .theConcertDescriptionLong,
-                            strategies: {
-                              AppLocalizations.of(context)!.strategyEarplugs:
-                                  Icons.headphones,
-                              AppLocalizations.of(context)!.strategyFriends:
-                                  Icons.group,
-                            },
-                            color: const Color(0xff07BFEB)));
-
-                  default:
-                    return const Placeholder();
-                }
+              title: AppLocalizations.of(context)!.theMallTitle,
+              description: AppLocalizations.of(context)!.theMallDescriptionLong,
+              strategies: {
+                AppLocalizations.of(context)!.strategyHeadphones:
+                    Icons.headphones,
+                AppLocalizations.of(context)!.strategyFriends: Icons.group,
+                AppLocalizations.of(context)!.strategyFamily: Icons.group
               },
-            ),
-          ]),
-    ],
-  );
+              color: const Color(0xffFF2F26),
+            ));
+          case "station":
+            return ExperienceIntro(
+                params: ExperienceIntroParameters(
+                    url: 'https://i.imgur.com/3WJFkSt.mp4',
+                    indicators: {
+                      AppLocalizations.of(context)!.triggerVehicles:
+                          Icons.train,
+                      AppLocalizations.of(context)!.triggerCrowds: Icons.people,
+                      AppLocalizations.of(context)!.triggerNoise:
+                          Icons.volume_up,
+                    },
+                    title: AppLocalizations.of(context)!.theStationTitle,
+                    description:
+                        AppLocalizations.of(context)!.theStationDescriptionLong,
+                    strategies: {
+                      AppLocalizations.of(context)!.strategyHeadphones:
+                          Icons.headphones,
+                      AppLocalizations.of(context)!.strategyFriends:
+                          Icons.group,
+                    },
+                    color: const Color(0xffFEAC01)));
+          case "playground":
+            return ExperienceIntro(
+                params: ExperienceIntroParameters(
+                    url: '',
+                    indicators: {
+                      AppLocalizations.of(context)!.triggerKids:
+                          Icons.family_restroom,
+                      AppLocalizations.of(context)!.triggerCrowds: Icons.people,
+                      AppLocalizations.of(context)!.triggerScreaming:
+                          Icons.campaign,
+                    },
+                    title: AppLocalizations.of(context)!.thePlaygroundTitle,
+                    description: AppLocalizations.of(context)!
+                        .thePlaygroundDescriptionLong,
+                    strategies: {
+                      AppLocalizations.of(context)!.strategyAvoidKids:
+                          Icons.route,
+                      AppLocalizations.of(context)!.strategyHeadphones:
+                          Icons.headset,
+                    },
+                    color: const Color(0xffC3F3B3)));
+
+          case "concert":
+            return ExperienceIntro(
+                params: ExperienceIntroParameters(
+                    url: '',
+                    indicators: {
+                      AppLocalizations.of(context)!.triggerLoud:
+                          Icons.volume_up,
+                      AppLocalizations.of(context)!.triggerCrowds: Icons.people,
+                      AppLocalizations.of(context)!.triggerLights:
+                          Icons.lightbulb,
+                    },
+                    title: AppLocalizations.of(context)!.theConcertTitle,
+                    description:
+                        AppLocalizations.of(context)!.theConcertDescriptionLong,
+                    strategies: {
+                      AppLocalizations.of(context)!.strategyEarplugs:
+                          Icons.headphones,
+                      AppLocalizations.of(context)!.strategyFriends:
+                          Icons.group,
+                    },
+                    color: const Color(0xff07BFEB)));
+
+          default:
+            return const Placeholder();
+        }
+      },
+    ),
+  ]);
+}
+
+class MyNavigatorObserver extends NavigatorObserver {
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    log('Pushed: $route, previous: $previousRoute');
+  }
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    log('popped: $route, previous: $previousRoute');
+  }
 }

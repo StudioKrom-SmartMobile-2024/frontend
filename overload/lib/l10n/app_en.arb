@@ -21,7 +21,7 @@
   "theConcertDescriptionShort": "Live noise and crowds",
 
   "exitVRConfirm": "Exit",
-  "exitVRCancel": "Stay",
+  "exitVRCancel": "Return",
   "startVRConfirm": "Continue",
   "disclaimerTitle": "DISCLAIMER",
   "disclaimerDescription": "This video contains intense sensory stimuli and may not be suitable for individuals with sensory overload. Viewer discretion is advised.",
@@ -49,5 +49,27 @@
 
   "strategiesTitle": "Strategies",
   "strategiesDescription": "If you notice that you or a close one experiences sensory issues in such environment these are common helping tricks:",
-  "confirmEnterVR": "Proceed"
+  "confirmEnterVR": "Proceed",
+
+  "rateExperienceTitle": "Rate the experience",
+  "rateExperienceDescription": "Your feedback is important for us in order to make these experiences as accurate as possible",
+  "rateExperienceCommentTitle": "Leave a comment",
+  "feelingQuestion": "How did you feel?",
+  "feelingGood": "Good",
+  "feelingNormal": "Normal",
+  "feelingBad": "Bad",
+  "skipRatingButton": "Skip",
+  "confirmRatingButton": "Send",
+  "confirmSkipTitle": "Are you sure?",
+  "confirmSkipDescription": "You opinion is very valuable to us",
+
+  "skipFeedbackYes": "Skip",
+  "skipFeedbackNo": "Rate",
+  "feedbackReceivedTitle": "Thanks for your feedback!",
+  "home": "Home",
+
+  "settingsLocaleEN": "English (EN)",
+  "settingsLocaleNL": "Dutch (NL)",
+
+  "seeIntroAgain": "I wish to see the introduction again."
 }

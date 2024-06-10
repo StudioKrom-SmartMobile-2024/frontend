@@ -133,7 +133,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
           if (_isDisclaimerShowing)
             ConfirmationDialogue(
               onConfirm: confirmStart,
-              onCancel: confirmLeave,
+              onCancel: cancelStart,
               popupDescription:
                   AppLocalizations.of(context)!.disclaimerDescription,
               confirmText: AppLocalizations.of(context)!.startVRConfirm,
@@ -143,6 +143,23 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
         ],
       ),
     );
+  }
+
+  void cancelStart() {
+    switch (widget.params.type) {
+      case ExperienceType.trainStation:
+        context.go(INTRO_EXPERIENCE_STATION_ROUTE);
+        break;
+      case ExperienceType.mall:
+        context.go(INTRO_EXPERIENCE_MALL_ROUTE);
+        break;
+      case ExperienceType.playground:
+        context.go(INTRO_EXPERIENCE_PLAYGROUND_ROUTE);
+        break;
+      case ExperienceType.concert:
+        context.go(INTRO_EXPERIENCE_CONCERT_ROUTE);
+        break;
+    }
   }
 
   void confirmStart() {
@@ -165,7 +182,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
       _isShowingConfirmExit = false;
     });
 
-    context.go("/home");
+    context.go(RATE_ROUTE);
   }
 
   void cardBoardPressed() {

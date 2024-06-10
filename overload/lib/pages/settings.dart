@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/main.dart';
+import 'package:overload/utils/constants.dart';
 import 'package:overload/widgets/common/default_header.dart';
 import 'package:overload/widgets/common/toggle_row.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,6 +44,8 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     const heightBetween = 25.0;
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
     return Scaffold(
       body: Stack(
@@ -106,8 +110,10 @@ class _SettingsPageState extends State<SettingsPage> {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value == 'en'
-                                  ? 'English (EN)'
-                                  : 'Dutch (NL)'),
+                                  ? AppLocalizations.of(context)!
+                                      .settingsLocaleEN
+                                  : AppLocalizations.of(context)!
+                                      .settingsLocaleNL),
                             );
                           }).toList(),
                         ),
@@ -115,6 +121,18 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                   const SizedBox(height: heightBetween),
+                  Center(
+                    child: Opacity(
+                      opacity: 0.1,
+                      child: GestureDetector(
+                        onTap: () => context.go(WELCOME_ROUTE),
+                        child: Text(
+                          AppLocalizations.of(context)!.seeIntroAgain,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
