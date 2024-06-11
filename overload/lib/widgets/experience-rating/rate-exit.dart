@@ -5,12 +5,22 @@ import 'package:overload/widgets/common/cancel_button.dart';
 import 'package:overload/widgets/common/gradient_button.dart';
 import 'package:overload/widgets/experience-rating/emotion_selector.dart';
 
-class RateExit extends StatelessWidget {
+class RateExit extends StatefulWidget {
   final VoidCallback skipRating;
   final VoidCallback sendRating;
 
-  const RateExit(
-      {super.key, required this.skipRating, required this.sendRating});
+  RateExit({
+    super.key,
+    required this.skipRating,
+    required this.sendRating,
+  });
+
+  @override
+  State<RateExit> createState() => _RateExitState();
+}
+
+class _RateExitState extends State<RateExit> {
+  bool _hasRated = false;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +80,9 @@ class RateExit extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(height: 25),
-          const EmotionSelector(),
+          EmotionSelector(
+            onSetRating: onSetRating,
+          ),
           const SizedBox(height: 25),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,13 +90,13 @@ class RateExit extends StatelessWidget {
               Expanded(
                 child: CancelButton(
                   text: AppLocalizations.of(context)!.skipRatingButton,
-                  onPress: skipRating,
+                  onPress: widget.skipRating,
                 ),
               ),
               const SizedBox(width: 25),
               Expanded(
                 child: GradientButton(
-                  onPress: sendRating,
+                  onPress: _hasRated ? widget.sendRating : null,
                   text: AppLocalizations.of(context)!.confirmRatingButton,
                 ),
               ),
@@ -93,5 +105,11 @@ class RateExit extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void onSetRating() {
+    setState(() {
+      _hasRated = true;
+    });
   }
 }

@@ -71,7 +71,7 @@ class ExperienceIntro extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       DefaultHeader(
         onPressBack: () => context.pop(),
-        onPressSettings: () => context.go(SETTINGS_ROUTE),
+        onPressSettings: () => context.push(SETTINGS_ROUTE),
         color: params.color,
       ),
       ClipRect(

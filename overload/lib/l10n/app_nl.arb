@@ -59,13 +59,13 @@
 "feelingGood": "Goed",
 "feelingNormal": "Normaal",
 "feelingBad": "Slecht",
-"skipRatingButton": "Overslaan",
+"skipRatingButton": "Skip",
 "confirmRatingButton": "Versturen",
 "confirmSkipTitle": "Weet je het zeker?",
-"feedbackDescription": "Je mening is goud waard!",
+"confirmSkipDescription": "Je mening is goud waard!",
 
-"skipFeedbackYes": "Overslaan",
-"skipFeedbackNo": "Beoordelen",
+"skipFeedbackYes": "Skip",
+"skipFeedbackNo": "Raten",
 "feedbackReceivedTitle": "Dankjewel voor alle feedback!",
 "home": "Home",
 

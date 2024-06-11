@@ -60,6 +60,7 @@ class _MainAppState extends State<MainApp> {
 
     return MaterialApp.router(
       locale: Locale(_localeCode),
+      debugShowCheckedModeBanner: false,
       routerConfig: _router,
       theme: lightTheme,
       darkTheme: darkTheme,

@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
             top: 0,
             left: -20,
             child: Image.asset(
-              'assets/img/bg.png', //!change this to background png
+              'assets/img/bg.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   DefaultHeader(
-                    onPressSettings: () => context.go(SETTINGS_ROUTE),
+                    onPressSettings: () => context.push(SETTINGS_ROUTE),
                     paddingHorizontal: 0,
                   ),
                   const SizedBox(height: 25),

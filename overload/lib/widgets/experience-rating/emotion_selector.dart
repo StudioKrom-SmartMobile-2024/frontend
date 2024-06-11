@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EmotionSelector extends StatefulWidget {
-  const EmotionSelector({super.key});
+  final VoidCallback onSetRating;
+  const EmotionSelector({super.key, required this.onSetRating});
 
   @override
   _EmotionSelectorState createState() => _EmotionSelectorState();
@@ -15,6 +16,7 @@ class _EmotionSelectorState extends State<EmotionSelector> {
     setState(() {
       selectedEmotion = emotion;
     });
+    widget.onSetRating();
   }
 
   @override

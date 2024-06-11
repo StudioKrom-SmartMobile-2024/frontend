@@ -42,7 +42,7 @@ class _RateExperienceState extends State<RateExperience> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 DefaultHeader(
-                  onPressSettings: () => context.go('/home/settings'),
+                  onPressSettings: () => context.push(SETTINGS_ROUTE),
                   paddingHorizontal: 0,
                 ),
                 const SizedBox(height: 25),
