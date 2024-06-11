@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:overload/models/experience_params.dart';
 import 'package:overload/models/experience_type.dart';
 import 'package:overload/utils/SoundManager.dart';
-import 'package:overload/widgets/vr-dialogues/ConfirmationDialogue.dart';
-import 'package:overload/widgets/vr-dialogues/SettingsOverlay.dart';
+import 'package:overload/widgets/vr-overlays/confirmation_dialogue.dart';
+import 'package:overload/widgets/vr-overlays/settings_overlay.dart';
 import 'package:vr_player/vr_player.dart';
 import 'package:flutter/material.dart';
 
