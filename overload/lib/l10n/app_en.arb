@@ -1,0 +1,75 @@
+{
+  "continueTxt": "Continue",
+  "darkMode": "Dark mode",    
+  "settings": "Settings",
+  "toggleGestures": "Shake head to pause video",
+  "selectedLanguage": "Languages",
+
+  "welcomeTitle": "FEELING OVERWHELMED?",
+  "welcomeDescription": "Discover the world first-hand as it is for those suffering from sensory overload",
+  "getStarted": "Get started now",
+
+  "overstimulatingExperiencesTitle": "Overstimulating experiences",
+  "overstimulatingExperiencesDescription": "Experience the world as it is for those who struggle with sensory overload on a daily basis.",
+  "theMallTitle": "The mall",
+  "theMallDescriptionShort": "Bright lights and color",
+  "theStationTitle": "Train station",
+  "theStationDescriptionShort": "Transit rush",
+  "thePlaygroundTitle": "Playground",
+  "thePlaygroundDescriptionShort": "Kid's POV",
+  "theConcertTitle": "A concert",
+  "theConcertDescriptionShort": "Live noise and crowds",
+
+  "exitVRConfirm": "Exit",
+  "exitVRCancel": "Return",
+  "startVRConfirm": "Continue",
+  "disclaimerTitle": "DISCLAIMER",
+  "disclaimerDescription": "This video contains intense sensory stimuli and may not be suitable for individuals with sensory overload. Viewer discretion is advised.",
+  "exitExperienceTitle": "EXIT EXPERIENCE",
+  "exitExperienceDescription": "Are you sure you want to exit the experience?",
+
+  "theMallDescriptionLong": "Enter a lively shopping center filled with colorful advertisements, loud chatter, and diverse store sounds. Experience the sensory overload of a day spent at the mall.",
+  "theStationDescriptionLong": "Step into a bustling train station filled with the hustle and bustle of commuters rushing to catch their rides. The sound of trains arriving and departing, the PA system announcing arrivals and delays, and the chatter of passengers creates a symphony of noise. The smell of coffee, food vendors, and exhaust fumes fills the air as people weave in and out of the crowds.",
+  "thePlaygroundDescriptionLong": "Enter a lively playground filled with the laughter of children running and playing. The sounds of squeaking swings, clanging metal bars, and playful shouts create an atmosphere of joy and energy. The smell of freshly cut grass, sunscreen, and snacks drifts through the air as parents watch over their kids and the sound of giggles and slides fills the air.",
+  "theConcertDescriptionLong": "Feel the energy of a packed concert venue as the music fills the air and the crowd roars with excitement. The thumping bass, screaming fans, and vibrant lights create a sensory overload of sound and sight. The smell of sweat, beer, and popcorn mingles with the excitement as the performers take the stage and the music starts to play.",
+
+  "strategyHeadphones": "Wear headphones",
+  "strategyFriends": "Go with friends",
+  "strategyFamily": "Go with family",
+  "strategyAvoidKids": "Avoid kids",
+  "strategyEarplugs": "Wear earplugs",
+
+  "triggerCrowds": "Crowds",
+  "triggerNoise": "Noise",
+  "triggerVehicles": "Vehicles",
+  "triggerKids": "Kids",
+  "triggerScreaming": "Screaming",
+  "triggerLights": "Lights",
+  "triggerLoud": "Loud",
+
+  "strategiesTitle": "Strategies",
+  "strategiesDescription": "If you notice that you or a close one experiences sensory issues in such environment these are common helping tricks:",
+  "confirmEnterVR": "Proceed",
+
+  "rateExperienceTitle": "Rate the experience",
+  "rateExperienceDescription": "Your feedback is important for us in order to make these experiences as accurate as possible",
+  "rateExperienceCommentTitle": "Leave a comment",
+  "feelingQuestion": "How did you feel?",
+  "feelingGood": "Good",
+  "feelingNormal": "Normal",
+  "feelingBad": "Bad",
+  "skipRatingButton": "Skip",
+  "confirmRatingButton": "Send",
+  "confirmSkipTitle": "Are you sure?",
+  "confirmSkipDescription": "You opinion is very valuable to us",
+
+  "skipFeedbackYes": "Skip",
+  "skipFeedbackNo": "Rate",
+  "feedbackReceivedTitle": "Thanks for your feedback!",
+  "home": "Home",
+
+  "settingsLocaleEN": "English (EN)",
+  "settingsLocaleNL": "Dutch (NL)",
+
+  "seeIntroAgain": "I wish to see the introduction again."
+}

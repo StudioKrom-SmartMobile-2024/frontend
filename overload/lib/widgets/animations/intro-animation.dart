@@ -14,7 +14,6 @@ class OverstimulateIntroAnimation extends StatefulWidget {
 class _OverstimulateIntroAnimationState
     extends State<OverstimulateIntroAnimation> {
   final _random = Random();
-  late AnimationController _controller;
 
   late var horizontalSpaceBetween = _random.nextInt(15) + 15;
 
@@ -34,7 +33,6 @@ class _OverstimulateIntroAnimationState
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 
@@ -135,6 +133,46 @@ class _OverstimulateIntroAnimationState
               width: constraints.maxWidth,
               height: widgetHeight,
               isFromLTR: true,
+              speedRate: _random.nextDouble() * widgetMaxSpeed + widgetMinSpeed,
+              children:
+                  List.generate(itemsToGenerate, (index) => getRandomElement()),
+            ),
+            SizedBox(
+              height: verticalSpaceBetween,
+            ),
+            MarqueeEffect(
+              marginLeft: marginLeft,
+              betweenSpacing: _random.nextInt(widgetHorizontalSpaceMax) +
+                  widgetHorizontalSpaceMin,
+              width: constraints.maxWidth,
+              height: widgetHeight,
+              speedRate: _random.nextDouble() * widgetMaxSpeed + widgetMinSpeed,
+              children:
+                  List.generate(itemsToGenerate, (index) => getRandomElement()),
+            ),
+            SizedBox(
+              height: verticalSpaceBetween,
+            ),
+            MarqueeEffect(
+              marginLeft: marginLeft,
+              betweenSpacing: _random.nextInt(widgetHorizontalSpaceMax) +
+                  widgetHorizontalSpaceMin,
+              width: constraints.maxWidth,
+              height: widgetHeight,
+              isFromLTR: true,
+              speedRate: _random.nextDouble() * widgetMaxSpeed + widgetMinSpeed,
+              children:
+                  List.generate(itemsToGenerate, (index) => getRandomElement()),
+            ),
+            SizedBox(
+              height: verticalSpaceBetween,
+            ),
+            MarqueeEffect(
+              marginLeft: marginLeft,
+              betweenSpacing: _random.nextInt(widgetHorizontalSpaceMax) +
+                  widgetHorizontalSpaceMin,
+              width: constraints.maxWidth,
+              height: widgetHeight,
               speedRate: _random.nextDouble() * widgetMaxSpeed + widgetMinSpeed,
               children:
                   List.generate(itemsToGenerate, (index) => getRandomElement()),

@@ -47,6 +47,7 @@ class ConfirmationDialogue extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Icon, Title, Subtitle
                 Padding(
@@ -62,10 +63,10 @@ class ConfirmationDialogue extends StatelessWidget {
                         height: 8,
                       ),
                       Text(popupTitle,
-                          style: const TextStyle(
-                              fontSize: HEADER_FONTSIZE,
-                              color: COLOR_WHITE,
-                              fontFamily: FONT_GULF)),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge
+                              ?.copyWith(color: Colors.white)),
                       const SizedBox(
                         height: 8,
                       ),
@@ -90,13 +91,14 @@ class ConfirmationDialogue extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () => onCancel(),
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(18),
-                          child: Text("Cancel", style: SUBHEADER_TEXT_STYLE),
+                        child: Padding(
+                          padding: const EdgeInsets.all(18),
+                          child: Text(cancelText, style: SUBHEADER_TEXT_STYLE),
                         ),
                       ),
                     ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:overload/utils/constants.dart';
 
 class SettingsOverlay extends StatelessWidget {
-  final Function cardBoardPressed;
+  final VoidCallback cardBoardPressed;
   final Function switchSettingsDisplay;
   bool isVideoVR;
 
@@ -18,7 +19,7 @@ class SettingsOverlay extends StatelessWidget {
       right: 0,
       child: Container(
         decoration: const BoxDecoration(
-          color: Color(0xff151515),
+          color: COLOR_BLACK,
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
         ),
         padding: const EdgeInsets.fromLTRB(16, 8, 8, 16),
@@ -28,39 +29,39 @@ class SettingsOverlay extends StatelessWidget {
           children: [
             IconButton(
               padding: EdgeInsets.zero,
-              iconSize: 36,
+              iconSize: DEFAULT_ICON_SIZE,
               icon: const Icon(
                 Icons.close,
-                color: Colors.white,
+                color: COLOR_WHITE,
               ),
               onPressed: () => switchSettingsDisplay(false),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(72, 72, 72, 0.85),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    width: 40,
-                    child: Text(
-                      isVideoVR ? "360" : "VR",
-                      style: const TextStyle(fontSize: 21, color: Colors.white),
+            InkWell(
+              onTap: () => cardBoardPressed(),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: COLOR_GRAY,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: 60,
+                      child: Text(
+                        isVideoVR ? "360" : "VR",
+                        style:
+                            const TextStyle(fontSize: 21, color: Colors.white),
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    iconSize: 36,
-                    icon: Icon(
+                    Icon(
                       isVideoVR ? Icons.threesixty : Icons.vrpano,
+                      size: DEFAULT_ICON_SIZE,
                       color: Colors.white,
                     ),
-                    onPressed: () => cardBoardPressed(),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )
           ],

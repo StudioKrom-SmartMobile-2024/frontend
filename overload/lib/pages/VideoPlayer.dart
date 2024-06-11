@@ -1,12 +1,15 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overload/models/experience_params.dart';
 import 'package:overload/models/experience_type.dart';
-import 'package:overload/utils/SoundManager.dart';
+import 'package:overload/utils/constants.dart';
+import 'package:overload/utils/sound_manager.dart';
 import 'package:overload/widgets/vr-overlays/confirmation_dialogue.dart';
 import 'package:overload/widgets/vr-overlays/settings_overlay.dart';
 import 'package:vr_player/vr_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VideoPlayerPage extends StatefulWidget {
   final ExperienceParams params;
@@ -104,38 +107,62 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
                   right: 8,
                   top: 8,
                   child: IconButton(
-                    iconSize: 36,
+                    iconSize: DEFAULT_ICON_SIZE,
                     icon: const Icon(
                       Icons.settings,
                       color: Colors.white,
                     ),
                     onPressed: () => switchSettingsDisplay(true),
                   )),
+          if (isVideoLoading)
+            const Center(
+              child: SpinKitDualRing(
+                color: Colors.white,
+                size: 50.0,
+              ),
+            ),
           if (_isShowingConfirmExit)
             ConfirmationDialogue(
-              onConfirm: confirmLeave,
-              onCancel: cancelLeave,
-              popupDescription: 'Are you sure you want to exit the experience?',
-              confirmText: 'Exit',
-              cancelText: 'Stay',
-              popupTitle: 'EXIT EXPERIENCE',
-            ),
+                onConfirm: confirmLeave,
+                onCancel: cancelLeave,
+                popupDescription:
+                    AppLocalizations.of(context)!.exitExperienceDescription,
+                confirmText: AppLocalizations.of(context)!.exitVRConfirm,
+                cancelText: AppLocalizations.of(context)!.exitVRCancel,
+                popupTitle: AppLocalizations.of(context)!.exitExperienceTitle),
           if (_isDisclaimerShowing)
             ConfirmationDialogue(
-              onConfirm: onConfirmExperience,
-              onCancel: confirmLeave,
+              onConfirm: confirmStart,
+              onCancel: cancelStart,
               popupDescription:
-                  'This video contains intense sensory stimuli and may not be suitable for individuals with sensory overload. Viewer discretion is advised.',
-              confirmText: 'Continue',
-              cancelText: 'Exit',
-              popupTitle: 'DISCLAIMER',
+                  AppLocalizations.of(context)!.disclaimerDescription,
+              confirmText: AppLocalizations.of(context)!.startVRConfirm,
+              cancelText: AppLocalizations.of(context)!.exitVRCancel,
+              popupTitle: AppLocalizations.of(context)!.disclaimerTitle,
             ),
         ],
       ),
     );
   }
 
-  void onConfirmExperience() {
+  void cancelStart() {
+    switch (widget.params.type) {
+      case ExperienceType.trainStation:
+        context.go(INTRO_EXPERIENCE_STATION_ROUTE);
+        break;
+      case ExperienceType.mall:
+        context.go(INTRO_EXPERIENCE_MALL_ROUTE);
+        break;
+      case ExperienceType.playground:
+        context.go(INTRO_EXPERIENCE_PLAYGROUND_ROUTE);
+        break;
+      case ExperienceType.concert:
+        context.go(INTRO_EXPERIENCE_CONCERT_ROUTE);
+        break;
+    }
+  }
+
+  void confirmStart() {
     setState(() {
       _isDisclaimerShowing = false;
     });
@@ -155,7 +182,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
       _isShowingConfirmExit = false;
     });
 
-    context.go("/home");
+    context.go(RATE_ROUTE);
   }
 
   void cardBoardPressed() {
@@ -204,6 +231,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
 
   void onReceiveState(VrState state) {
     switch (state) {
+      case VrState.buffering:
       case VrState.loading:
         setState(() {
           isVideoLoading = true;
@@ -215,7 +243,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
           isVideoReady = true;
         });
         break;
-      case VrState.buffering:
       case VrState.idle:
         break;
     }

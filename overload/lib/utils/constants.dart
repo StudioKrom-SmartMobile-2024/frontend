@@ -10,6 +10,8 @@ const COLOR_BLACK = Color(0xFF000000);
 const COLOR_NAVY = Color(0xFF031A2A);
 const COLOR_WHITE = Color(0xFFFFFFFF);
 const COLOR_GRAY = Color(0x99D9D9D9);
+const COLOR_ALMOSTBLACK = Color.fromARGB(255, 36, 36, 36);
+const COLOR_DARK_GRAY = Color(0xD9484848);
 
 //Define font sizes
 const TITLE_FONTSIZE = 38.00;
@@ -85,3 +87,63 @@ const OVERLOAD_GRADIENT_HIGH = LinearGradient(
 
 //Define constant icon sizes
 const DEFAULT_ICON_SIZE = 34.00;
+
+// Light theme definition
+final ThemeData lightTheme = ThemeData(
+  useMaterial3: true,
+  colorScheme: const ColorScheme(
+    brightness: Brightness.light,
+    primary: COLOR_WHITE,
+    onPrimary: COLOR_BLACK,
+    secondary: COLOR_GRAY,
+    onSecondary: COLOR_BLACK,
+    surface: COLOR_WHITE,
+    error: COLOR_RED,
+    onError: COLOR_BLACK,
+    onSurface: COLOR_BLACK,
+    // Add other properties if needed
+  ),
+  textTheme: const TextTheme(
+    titleLarge: TITLE_TEXT_STYLE,
+    headlineLarge: HEADER_TEXT_STYLE,
+    headlineMedium: SUBHEADER_TEXT_STYLE,
+    bodyLarge: BODY_TEXT_STYLE,
+    bodyMedium: DETAILS_TEXT_STYLE,
+  ),
+);
+
+// Dark theme definition
+final ThemeData darkTheme = ThemeData(
+  useMaterial3: true,
+  colorScheme: const ColorScheme(
+    brightness: Brightness.dark,
+    primary: COLOR_ALMOSTBLACK,
+    onPrimary: COLOR_WHITE,
+    secondary: COLOR_DARK_GRAY,
+    onSecondary: COLOR_WHITE,
+    surface: COLOR_ALMOSTBLACK,
+    error: COLOR_RED,
+    onError: COLOR_WHITE,
+    onSurface: COLOR_WHITE,
+    // Add other properties if needed
+  ),
+  textTheme: TextTheme(
+    titleLarge: TITLE_TEXT_STYLE.copyWith(color: COLOR_WHITE),
+    headlineLarge: HEADER_TEXT_STYLE.copyWith(color: COLOR_WHITE),
+    headlineMedium: SUBHEADER_TEXT_STYLE.copyWith(color: COLOR_WHITE),
+    bodyLarge: BODY_TEXT_STYLE.copyWith(color: COLOR_WHITE),
+    bodyMedium: DETAILS_TEXT_STYLE.copyWith(color: COLOR_WHITE),
+  ),
+);
+
+//Define the routes
+const WELCOME_ROUTE = "/";
+const HOME_ROUTE = "/home";
+const RATE_ROUTE = "/rate";
+const SETTINGS_ROUTE = "/settings";
+const EXPERIENCE_ROUTE = "/experience";
+const INTRO_EXPERIENCE_BASE_ROUTE = "/intro/:experienceName";
+const INTRO_EXPERIENCE_MALL_ROUTE = "/intro/mall";
+const INTRO_EXPERIENCE_STATION_ROUTE = "/intro/station";
+const INTRO_EXPERIENCE_CONCERT_ROUTE = "/intro/stage";
+const INTRO_EXPERIENCE_PLAYGROUND_ROUTE = "/intro/playground";
