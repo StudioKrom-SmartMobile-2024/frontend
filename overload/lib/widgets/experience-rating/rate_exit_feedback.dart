@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:overload/widgets/common/cancel_button.dart';
 import 'package:overload/widgets/common/gradient_button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RateExitFeedback extends StatelessWidget {
   final VoidCallback? onPressCancel;

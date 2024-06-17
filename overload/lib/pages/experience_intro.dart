@@ -129,6 +129,6 @@ class ExperienceIntro extends StatelessWidget {
   void onPressProceed(BuildContext context, ExperienceIntroParameters params) {
     var parameters = ExperienceParams(
         url: params.url, type: ExperienceType.trainStation, soundCertainty: 1);
-    context.go(EXPERIENCE_ROUTE, extra: parameters);
+    context.push(EXPERIENCE_ROUTE, extra: parameters);
   }
 }

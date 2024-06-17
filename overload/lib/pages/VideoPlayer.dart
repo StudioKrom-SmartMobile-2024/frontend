@@ -59,14 +59,15 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   }
 
   @override
-  void dispose() {
-    SystemChrome.setPreferredOrientations([
+  Future<void> dispose() async {
+    await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    SystemChrome.setEnabledSystemUIMode(
+    await SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: SystemUiOverlay.values,
     );
+
     super.dispose();
   }
 
@@ -183,6 +184,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
     });
 
     context.go(RATE_ROUTE);
+
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    dispose();
   }
 
   void cardBoardPressed() {

@@ -124,5 +124,5 @@ const EXPERIENCE_ROUTE = "/experience";
 const INTRO_EXPERIENCE_BASE_ROUTE = "/intro/:experienceName";
 const INTRO_EXPERIENCE_MALL_ROUTE = "/intro/mall";
 const INTRO_EXPERIENCE_STATION_ROUTE = "/intro/station";
-const INTRO_EXPERIENCE_CONCERT_ROUTE = "/intro/stage";
+const INTRO_EXPERIENCE_CONCERT_ROUTE = "/intro/concert";
 const INTRO_EXPERIENCE_PLAYGROUND_ROUTE = "/intro/playground";
