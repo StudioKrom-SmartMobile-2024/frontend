@@ -64,6 +64,27 @@ const DISABLED_OVERLOAD_GRADIENT = LinearGradient(
   ],
 );
 
+const OVERLOAD_GRADIENT_LOW = LinearGradient(
+  colors: [
+    Color.fromRGBO(188, 241, 182, 1),
+    Color.fromRGBO(49, 203, 223, 1),
+  ],
+);
+
+const OVERLOAD_GRADIENT_MEDIUM = LinearGradient(
+  colors: [
+    Color.fromRGBO(252, 204, 0, 1),
+    Color.fromRGBO(255, 108, 25, 1),
+  ],
+);
+
+const OVERLOAD_GRADIENT_HIGH = LinearGradient(
+  colors: [
+    Color.fromRGBO(255, 146, 85, 1),
+    Color.fromRGBO(255, 47, 49, 1),
+  ],
+);
+
 //Define constant icon sizes
 const DEFAULT_ICON_SIZE = 34.00;
 
