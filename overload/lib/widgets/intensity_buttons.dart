@@ -44,12 +44,10 @@ class DifficultyButton extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Center(
-                  child: Text(
-                    text,
-                    style: SUBHEADER_TEXT_STYLE.copyWith(
-                      color: Colors.black,
-                    ),
-                  ),
+                  child: Text(text, //needs updated text style
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: Colors.black,
+                          )),
                 ),
               ),
             ],

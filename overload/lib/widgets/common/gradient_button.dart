@@ -33,7 +33,7 @@ class GradientButton extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(text,
                       style:
@@ -48,7 +48,7 @@ class GradientButton extends StatelessWidget {
                       color:
                           disabled ? COLOR_BLACK.withOpacity(0.3) : COLOR_BLACK,
                       size: DEFAULT_ICON_SIZE,
-                    )
+                    ),
                 ],
               ),
             ),
