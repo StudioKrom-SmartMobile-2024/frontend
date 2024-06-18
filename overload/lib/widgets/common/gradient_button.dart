@@ -39,21 +39,14 @@ class GradientButton extends StatelessWidget {
                       style:
                           Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 color: disabled
-                                    ? Theme.of(context)
-                                        .colorScheme
-                                        .primary
-                                        .withOpacity(0.3)
-                                    : Theme.of(context).colorScheme.primary,
+                                    ? COLOR_BLACK.withOpacity(0.3)
+                                    : COLOR_BLACK,
                               )),
                   if (iconData != null)
                     Icon(
                       iconData,
-                      color: disabled
-                          ? Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.3)
-                          : Theme.of(context).colorScheme.primary,
+                      color:
+                          disabled ? COLOR_BLACK.withOpacity(0.3) : COLOR_BLACK,
                       size: DEFAULT_ICON_SIZE,
                     )
                 ],

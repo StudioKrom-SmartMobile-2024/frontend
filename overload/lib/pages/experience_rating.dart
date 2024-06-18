@@ -42,43 +42,47 @@ class _RateExperienceState extends State<RateExperience> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  DefaultHeader(
-                    onPressSettings: () => context.push(SETTINGS_ROUTE),
-                    paddingHorizontal: 0,
-                  ),
-                  const SizedBox(height: 25),
-                  if (_showRating)
-                    RateExit(
-                      skipRating: skipRating,
-                      sendRating: sendRating,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    DefaultHeader(
+                      onPressSettings: () => context.push(SETTINGS_ROUTE),
+                      paddingHorizontal: 0,
                     ),
-                  if (_showSkipFeedback)
-                    RateExitFeedback(
-                      onPressContinue: () => goHome(context),
-                      onPressCancel: cancelSkipRating,
-                      icon: Icons.sentiment_dissatisfied,
-                      title: AppLocalizations.of(context)!.confirmSkipTitle,
-                      description:
-                          AppLocalizations.of(context)!.confirmSkipDescription,
-                      continueText:
-                          AppLocalizations.of(context)!.skipFeedbackYes,
-                      cancelText: AppLocalizations.of(context)!.skipFeedbackNo,
-                    ),
-                  if (_showThanks)
-                    RateExitFeedback(
-                      onPressContinue: () => goHome(context),
-                      icon: Icons.sentiment_very_satisfied,
-                      title:
-                          AppLocalizations.of(context)!.feedbackReceivedTitle,
-                      description:
-                          AppLocalizations.of(context)!.confirmSkipDescription,
-                      continueText: AppLocalizations.of(context)!.home,
-                    ),
-                ],
+                    const SizedBox(height: 25),
+                    if (_showRating)
+                      RateExit(
+                        skipRating: skipRating,
+                        sendRating: sendRating,
+                      ),
+                    if (_showSkipFeedback)
+                      RateExitFeedback(
+                        onPressContinue: () => goHome(context),
+                        onPressCancel: cancelSkipRating,
+                        icon: Icons.sentiment_dissatisfied,
+                        title: AppLocalizations.of(context)!.confirmSkipTitle,
+                        description: AppLocalizations.of(context)!
+                            .confirmSkipDescription,
+                        continueText:
+                            AppLocalizations.of(context)!.skipFeedbackYes,
+                        cancelText:
+                            AppLocalizations.of(context)!.skipFeedbackNo,
+                      ),
+                    if (_showThanks)
+                      RateExitFeedback(
+                        onPressContinue: () => goHome(context),
+                        icon: Icons.sentiment_very_satisfied,
+                        title:
+                            AppLocalizations.of(context)!.feedbackReceivedTitle,
+                        description: AppLocalizations.of(context)!
+                            .confirmSkipDescription,
+                        continueText: AppLocalizations.of(context)!.home,
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
