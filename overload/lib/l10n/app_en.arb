@@ -71,5 +71,11 @@
   "settingsLocaleEN": "English (EN)",
   "settingsLocaleNL": "Dutch (NL)",
 
-  "seeIntroAgain": "I wish to see the introduction again."
+  "seeIntroAgain": "I wish to see the introduction again.",
+  "selectDifficulty": "Select scene intensity",
+  "enterExperience": "Enter experience",
+
+  "difficultyHard": "Hard",
+  "difficultyNormal": "Normal",
+  "difficultyEasy": "Easy"
 }

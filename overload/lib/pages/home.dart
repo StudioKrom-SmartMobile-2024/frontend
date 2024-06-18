@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

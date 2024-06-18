@@ -1,42 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:overload/utils/constants.dart';
 
-class DiffucultyButton extends StatelessWidget {
+class DifficultyButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPress;
-  final bool disabled;
   final Intensity intensity;
+  final bool isSelected;
 
-  const DiffucultyButton({
+  const DifficultyButton({
     super.key,
     required this.onPress,
     required this.text,
     required this.intensity,
-  }) : disabled = onPress == null;
+    required this.isSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(40),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: GestureDetector(
-        onTap: disabled ? null : onPress,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: _getGradientColor(intensity),
+        onTap: onPress,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(40),
+          ),
+          width: double.infinity,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: _getGradientColor(intensity),
+                    borderRadius: BorderRadius.circular(40),
+                    border: isSelected
+                        ? Border.all(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                            width: 2.0)
+                        : null,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Text(text,
-                  style: SUBHEADER_TEXT_STYLE.copyWith(
-                    color: Colors.black,
-                  )),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Center(
+                  child: Text(
+                    text,
+                    style: SUBHEADER_TEXT_STYLE.copyWith(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

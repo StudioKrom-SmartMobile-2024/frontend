@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:overload/models/experience_difficulty_params.dart';
 import 'package:overload/utils/constants.dart';
 import 'package:overload/models/experience_intro_params.dart';
 import 'package:overload/models/experience_params.dart';
@@ -74,11 +75,9 @@ class ExperienceIntro extends StatelessWidget {
         onPressSettings: () => context.push(SETTINGS_ROUTE),
         color: params.color,
       ),
-      ClipRect(
-        child: CustomPaint(
-          size: const Size(double.infinity, 100),
-          painter: WavePainter(waveColor: params.color),
-        ),
+      CustomPaint(
+        size: const Size(double.infinity, 100),
+        painter: WavePainter(waveColor: params.color),
       ),
       Padding(
         padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
@@ -127,8 +126,7 @@ class ExperienceIntro extends StatelessWidget {
   }
 
   void onPressProceed(BuildContext context, ExperienceIntroParameters params) {
-    var parameters = ExperienceParams(
-        url: params.url, type: ExperienceType.trainStation, soundCertainty: 1);
-    context.push(EXPERIENCE_ROUTE, extra: parameters);
+    var experienceName = 'station';
+    context.push("/difficulty/$experienceName");
   }
 }

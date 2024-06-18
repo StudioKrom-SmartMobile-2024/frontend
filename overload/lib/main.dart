@@ -1,11 +1,13 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:overload/models/experience_difficulty_params.dart';
 import 'package:overload/models/experience_intro_params.dart';
 import 'package:overload/models/experience_params.dart';
+import 'package:overload/models/experience_type.dart';
+import 'package:overload/pages/Difficulty.dart';
 import 'package:overload/pages/experience_rating.dart';
 import 'package:overload/pages/settings.dart';
 import 'package:overload/pages/videoplayer.dart';
@@ -48,6 +50,9 @@ class _MainAppState extends State<MainApp> {
 
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+
     super.initState();
     _themeMode = widget.initialThemeMode;
     _localeCode = widget.localeCode;
@@ -55,9 +60,6 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-
     return MaterialApp.router(
       locale: Locale(_localeCode),
       debugShowCheckedModeBanner: false,
@@ -104,6 +106,12 @@ class _MainAppState extends State<MainApp> {
       },
     ),
     GoRoute(
+      path: HOME_ROUTE,
+      builder: (BuildContext context, GoRouterState state) {
+        return const HomePage();
+      },
+    ),
+    GoRoute(
       path: SETTINGS_ROUTE,
       builder: (BuildContext context, GoRouterState state) {
         return SettingsPage();
@@ -115,9 +123,44 @@ class _MainAppState extends State<MainApp> {
           return RateExperience();
         }),
     GoRoute(
-      path: HOME_ROUTE,
+      path: DIFFICULTY_ROUTE,
       builder: (BuildContext context, GoRouterState state) {
-        return const HomePage();
+        final experienceName = state.pathParameters['experienceName'];
+        switch (experienceName) {
+          case "mall":
+            return DifficultyPage(
+                params: ExperienceDifficultyParams(
+                    title: AppLocalizations.of(context)!.theMallTitle,
+                    type: ExperienceType.mall,
+                    color: const Color(0xffFF2F26),
+                    url: ''));
+
+          case "station":
+            return DifficultyPage(
+                params: ExperienceDifficultyParams(
+                    title: AppLocalizations.of(context)!.theStationTitle,
+                    type: ExperienceType.trainStation,
+                    color: const Color(0xffFEAC01),
+                    url: 'https://i.imgur.com/3WJFkSt.mp4'));
+
+          case "playground":
+            return DifficultyPage(
+                params: ExperienceDifficultyParams(
+                    title: AppLocalizations.of(context)!.thePlaygroundTitle,
+                    type: ExperienceType.playground,
+                    color: const Color(0xffC3F3B3),
+                    url: ''));
+
+          case "concert":
+            return DifficultyPage(
+                params: ExperienceDifficultyParams(
+                    title: AppLocalizations.of(context)!.theMallTitle,
+                    type: ExperienceType.concert,
+                    color: const Color(0xff07BFEB),
+                    url: ''));
+          default:
+            return const Placeholder();
+        }
       },
     ),
     GoRoute(

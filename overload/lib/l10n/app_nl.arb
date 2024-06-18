@@ -72,5 +72,11 @@
 "settingsLocaleEN": "Engels (EN)",
 "settingsLocaleNL": "Nederlands (NL)",
 
-"seeIntroAgain": "Ik wil de introductie nogmaals bekijken."
+"seeIntroAgain": "Ik wil de introductie nogmaals bekijken.",
+"selectDifficulty": "Kies de moeilijkheidsgraad van de scene",
+"enterExperience": "Start beleving",
+
+"difficultyHard": "Moeilijk",
+"difficultyNormal": "Standaard",
+"difficultyEasy": "Makkelijk"
 }

@@ -23,52 +23,50 @@ class RateExitFeedback extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(title, style: Theme.of(context).textTheme.headlineLarge),
+            const SizedBox(height: 25),
+            Text(description, style: Theme.of(context).textTheme.bodyLarge),
+            const SizedBox(height: 25),
+            Icon(
+              icon,
+              size: 200,
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: Theme.of(context).textTheme.headlineLarge),
-              const SizedBox(height: 25),
-              Text(description, style: Theme.of(context).textTheme.bodyLarge),
-              const SizedBox(height: 25),
-              Icon(
-                icon,
-                size: 200,
+              onPressCancel != null && cancelText != null
+                  ? CancelButton(
+                      text: cancelText!,
+                      onPress: onPressCancel!,
+                    )
+                  : const Expanded(
+                      flex: 1,
+                      child: SizedBox(),
+                    ),
+              const SizedBox(
+                width: 25,
               ),
+              Expanded(
+                flex: 1,
+                child: GradientButton(
+                    onPress: onPressContinue, text: continueText),
+              )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                onPressCancel != null && cancelText != null
-                    ? CancelButton(
-                        text: cancelText!,
-                        onPress: onPressCancel!,
-                      )
-                    : const Expanded(
-                        flex: 1,
-                        child: SizedBox(),
-                      ),
-                const SizedBox(
-                  width: 25,
-                ),
-                Expanded(
-                  flex: 1,
-                  child: GradientButton(
-                      onPress: onPressContinue, text: continueText),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:overload/utils/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsOverlay extends StatelessWidget {
   final VoidCallback cardBoardPressed;
   final Function switchSettingsDisplay;
   bool isVideoVR;
 
-  SettingsOverlay(
-      {super.key,
-      required this.cardBoardPressed,
-      required this.switchSettingsDisplay,
-      required this.isVideoVR});
+  SettingsOverlay({
+    super.key,
+    required this.cardBoardPressed,
+    required this.switchSettingsDisplay,
+    required this.isVideoVR,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +52,13 @@ class SettingsOverlay extends StatelessWidget {
                     SizedBox(
                       width: 60,
                       child: Text(
-                        isVideoVR ? "360" : "VR",
+                        isVideoVR ? "VR" : "360",
                         style:
                             const TextStyle(fontSize: 21, color: Colors.white),
                       ),
                     ),
                     Icon(
-                      isVideoVR ? Icons.threesixty : Icons.vrpano,
+                      isVideoVR ? Icons.vrpano : Icons.threesixty,
                       size: DEFAULT_ICON_SIZE,
                       color: Colors.white,
                     ),

@@ -19,9 +19,9 @@ class VideoPlayerPage extends StatefulWidget {
     Key? key,
     required this.params,
   }) : super(key: key) {
-    switch (this.params.type) {
+    switch (params.type) {
       case ExperienceType.trainStation:
-        soundMan = TrainStationSceMan(0, soundCertainty: 1.0);
+        soundMan = TrainStationSceMan(0, soundCertainty: params.soundCertainty);
         break;
       default:
         soundMan = EmptySoundManager(0, soundCertainty: 0.0);
@@ -49,25 +49,14 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-    ]);
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: [],
-    );
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
   }
 
   @override
-  Future<void> dispose() async {
-    await SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    await SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: SystemUiOverlay.values,
-    );
-
+  void dispose() {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
     super.dispose();
   }
 
@@ -149,16 +138,16 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
   void cancelStart() {
     switch (widget.params.type) {
       case ExperienceType.trainStation:
-        context.go(INTRO_EXPERIENCE_STATION_ROUTE);
+        context.go(DIFFICULTY_STATION_ROUTE);
         break;
       case ExperienceType.mall:
-        context.go(INTRO_EXPERIENCE_MALL_ROUTE);
+        context.go(DIFFICULTY_MALL_ROUTE);
         break;
       case ExperienceType.playground:
-        context.go(INTRO_EXPERIENCE_PLAYGROUND_ROUTE);
+        context.go(DIFFICULTY_PLAYGROUND_ROUTE);
         break;
       case ExperienceType.concert:
-        context.go(INTRO_EXPERIENCE_CONCERT_ROUTE);
+        context.go(DIFFICULTY_CONCERT_ROUTE);
         break;
     }
   }
@@ -186,8 +175,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
     context.go(RATE_ROUTE);
 
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-    dispose();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
   }
 
   void cardBoardPressed() {

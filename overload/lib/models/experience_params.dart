@@ -3,7 +3,7 @@ import 'package:overload/models/experience_type.dart';
 class ExperienceParams {
   final String url;
   final ExperienceType type;
-  final int soundCertainty;
+  final double soundCertainty;
 
   ExperienceParams({
     required this.url,

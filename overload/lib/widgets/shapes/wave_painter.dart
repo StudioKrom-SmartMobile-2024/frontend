@@ -9,7 +9,8 @@ class WavePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = waveColor
-      ..style = PaintingStyle.fill;
+      ..style = PaintingStyle.fill
+      ..isAntiAlias = true;
 
     final path = Path()
       ..moveTo(0, size.height * 0.9)

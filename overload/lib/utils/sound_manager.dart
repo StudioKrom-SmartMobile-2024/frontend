@@ -53,7 +53,7 @@ abstract class SoundManager {
     this.currentPosition = position;
   }
 
-  Future<void> checkStopwatchForSounds();
+  void checkStopwatchForSounds();
 }
 
 class TrainStationSceMan extends SoundManager {
@@ -61,15 +61,15 @@ class TrainStationSceMan extends SoundManager {
     soloud.init();
   }
 
-  String nsAnnouncementPath = 'assets/ns.mp3';
+  String nsAnnouncementPath = 'assets/audio/ns.mp3';
 
   @override
-  Future<void> checkStopwatchForSounds() async {
+  void checkStopwatchForSounds() {
     if (!shouldPlaySound(soundCertainty)) return;
 
     switch (currentPosition) {
-      case > 1400 && < 2000:
-        await playSound(nsAnnouncementPath, posY: 50);
+      case > 1400 && < 1500:
+        playSound(nsAnnouncementPath, posY: 50);
     }
   }
 }
