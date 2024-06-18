@@ -51,23 +51,27 @@ class _RateExitState extends State<RateExit> {
             color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(15),
           ),
-          padding: const EdgeInsets.all(8),
           height: 150,
-          child: TextField(
-            minLines: 5,
-            maxLines: 5,
-            showCursor: true,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSecondary,
-            ),
-            decoration: InputDecoration(
-              labelText: 'Leave a comment',
-              labelStyle: TextStyle(
-                color:
-                    Theme.of(context).colorScheme.onSecondary.withOpacity(0.5),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: TextField(
+              minLines: 5,
+              maxLines: 5,
+              showCursor: true,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSecondary,
               ),
-              alignLabelWithHint: true,
-              border: InputBorder.none,
+              decoration: InputDecoration(
+                labelText: 'Write your comment here...',
+                labelStyle: TextStyle(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSecondary
+                      .withOpacity(0.5),
+                ),
+                alignLabelWithHint: true,
+                border: InputBorder.none,
+              ),
             ),
           ),
         ),
