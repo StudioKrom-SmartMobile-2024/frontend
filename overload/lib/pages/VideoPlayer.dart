@@ -226,11 +226,13 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
     switch (state) {
       case VrState.buffering:
       case VrState.loading:
+        pauseOrPlayVR(pause: true);
         setState(() {
           isVideoLoading = true;
         });
         break;
       case VrState.ready:
+        pauseOrPlayVR(pause: false);
         setState(() {
           isVideoLoading = false;
           isVideoReady = true;
