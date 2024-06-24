@@ -1,0 +1,89 @@
+{
+"continueTxt": "Doorgaan",
+"darkMode": "Donkere modus",
+"settings": "Instellingen",
+"toggleGestures": "Schud je hoofd om te pauzeren",
+"selectedLanguage": "Talen",
+
+"welcomeTitle": "VOELT DRUK?",
+"welcomeDescription": "Ontdek de wereld des overstimulatie, door de ogen van een overprikkeld persoon.",
+"getStarted": "Begin nu",
+
+"overstimulatingExperiencesTitle": "Overstimulerende ervaringen",
+"overstimulatingExperiencesDescription": "Ervaar de wereld zoals het is voor mensen die moeite hebben met veel prikkels.",  
+"theMallTitle": "Het winkelcentrum",
+"theMallDescriptionShort": "Velle lichten en vele kleuren",
+"theStationTitle": "Het station",
+"theStationDescriptionShort": "Ervaar de spits",
+"thePlaygroundTitle": "De speeltuin",
+"thePlaygroundDescriptionShort": "Perspectief van een kind",
+"theConcertTitle": "Het concert",
+"theConcertDescriptionShort": "Live muziek en mensen massa's",
+
+"exitVRConfirm": "Verlaat",
+"exitVRCancel": "Terug",
+"startVRConfirm": "Start",
+"disclaimerTitle": "DISCLAIMER",
+"disclaimerDescription": "De video bevat potentieel overstimulerende ervaringen en zijn niet geschikt voor mensen met een gevoeligheid voor prikkels. U bent gewaarschuwd.",
+"exitExperienceTitle": "VERLAAT ERVARING",
+"exitExperienceDescription": "Weet je zeker dat je ervaring al wilt verlaten?",
+
+
+"theMallDescriptionLong": "Betreed een levendig winkelcentrum gevuld met kleurrijke advertenties, luid geklets en diverse winkelgeluiden. Ervaar de zintuiglijke overbelasting van een dag doorgebracht in het winkelcentrum.",
+"theStationDescriptionLong": "Stap in een druk treinstation gevuld met de drukte van forenzen die hun rit proberen te halen. Het geluid van aankomende en vertrekkende treinen, het omroepsysteem dat aankomsten en vertragingen aankondigt, en het geklets van passagiers creëren een symfonie van geluiden. De geur van koffie, voedselverkopers en uitlaatgassen vult de lucht terwijl mensen door de menigte weven.",
+"thePlaygroundDescriptionLong": "Betreed een levendige speeltuin gevuld met het gelach van kinderen die rennen en spelen. De geluiden van piepende schommels, rinkelende metalen stangen en speelse kreten creëren een sfeer van vreugde en energie. De geur van vers gemaaid gras, zonnebrandcrème en snacks zweeft door de lucht terwijl ouders over hun kinderen waken en het geluid van gegiechel en glijbanen de lucht vult.",
+"theConcertDescriptionLong": "Voel de energie van een vol concertzaal terwijl de muziek de lucht vult en de menigte brult van opwinding. De bonzende bas, schreeuwende fans en levendige lichten creëren een zintuiglijke overbelasting van geluid en zicht. De geur van zweet, bier en popcorn vermengt zich met de opwinding terwijl de artiesten het podium betreden en de muziek begint te spelen.",
+
+"strategyHeadphones": "Draag een koptelefoon",
+"strategyFriends": "Ga met vrienden",
+"strategyFamily": "Ga met familie",
+"strategyAvoidKids": "Vermijd kinderen",
+"strategyEarplugs": "Draag oordoppen",
+
+"triggerCrowds": "Massa's",
+"triggerNoise": "Lawaai",
+"triggerVehicles": "Voertuigen",
+"triggerKids": "Kinderen",
+"triggerScreaming": "Gekrijs",
+"triggerLights": "Lichten",
+"triggerLoud": "Hard geluid",
+
+"experienceWIP": "Sorry, we zijn nog druk bezig om deze ervaring perfect te maken. Voel je vrij om een andere ervaring te beleven.",
+
+"strategiesTitle": "Hulpmiddelen",
+"strategiesDescription": "Als je merkt dat jij of een naaste sensorische problemen ervaart in zo'n omgeving, zijn hier veelvoorkomende tips:",
+"confirmEnterVR": "Verder",
+
+"rateExperienceTitle": "Beoordeel de ervaring",
+"rateExperienceDescription": "Jouw feedback is cruciaal in het verbeteren van de ervaringen om ze zo accuraat mogelijk te maken.",
+"rateExperienceCommentTitle": "Suggesties & feedback",
+"feelingQuestion": "Hoe was de ervaring?",
+"feelingGood": "Goed",
+"feelingNormal": "Normaal",
+"feelingBad": "Slecht",
+"skipRatingButton": "Skip",
+"confirmRatingButton": "Versturen",
+"confirmSkipTitle": "Weet je het zeker?",
+"confirmSkipDescription": "Je mening is goud waard!",
+
+"skipFeedbackYes": "Skip",
+"skipFeedbackNo": "Raten",
+"feedbackReceivedTitle": "Dankjewel voor alle feedback!",
+"home": "Home",
+
+"settingsLocaleEN": "Engels (EN)",
+"settingsLocaleNL": "Nederlands (NL)",
+
+"seeIntroAgain": "Ik wil de introductie nogmaals bekijken.",
+"selectDifficulty": "Kies de moeilijkheidsgraad van de scene",
+"enterExperience": "Start beleving",
+
+"difficultyHard": "Moeilijk",
+"difficultyNormal": "Standaard",
+"difficultyEasy": "Makkelijk",
+
+"aftercareStart": "Ga naar ",
+"aftercareEnd": " voor ondersteuning en hulpbronnen voor jezelf en je naasten als je last hebt van overstimulatie of ongemak ervaart.",
+"aftercareTitle": "Voelt je je overprikkeld na het gebruik van onze app?",
+"aftercareAttemptSkip": "Neem s.v.p. de tijd om dit even rustig te lezen."
+}
