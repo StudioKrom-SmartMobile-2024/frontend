@@ -17,6 +17,7 @@ dependencies:
   icons_launcher: ^2.0.7
   intl: any
   shared_preferences: ^2.2.3
+  url_launcher: ^6.3.0
   vr_player: ^0.2.2
 
 dev_dependencies:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:overload/models/experience_type.dart';
 
 class ExperienceIntroParameters {
   final String title;
@@ -7,6 +8,7 @@ class ExperienceIntroParameters {
   final Map<String, IconData> strategies;
   final Map<String, IconData> indicators;
   final String url;
+  final ExperienceType type;
 
   ExperienceIntroParameters(
       {required this.title,
@@ -14,5 +16,6 @@ class ExperienceIntroParameters {
       required this.color,
       required this.strategies,
       required this.indicators,
-      required this.url});
+      required this.url,
+      required this.type});
 }

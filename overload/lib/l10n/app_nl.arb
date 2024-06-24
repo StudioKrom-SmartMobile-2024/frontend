@@ -48,6 +48,8 @@
 "triggerLights": "Lichten",
 "triggerLoud": "Hard geluid",
 
+"experienceWIP": "Sorry, we zijn nog druk bezig om deze ervaring perfect te maken. Voel je vrij om een andere ervaring te beleven.",
+
 "strategiesTitle": "Hulpmiddelen",
 "strategiesDescription": "Als je merkt dat jij of een naaste sensorische problemen ervaart in zo'n omgeving, zijn hier veelvoorkomende tips:",
 "confirmEnterVR": "Verder",
@@ -78,5 +80,10 @@
 
 "difficultyHard": "Moeilijk",
 "difficultyNormal": "Standaard",
-"difficultyEasy": "Makkelijk"
+"difficultyEasy": "Makkelijk",
+
+"aftercareStart": "Ga naar ",
+"aftercareEnd": " voor ondersteuning en hulpbronnen voor jezelf en je naasten als je last hebt van overstimulatie of ongemak ervaart.",
+"aftercareTitle": "Voelt je je overprikkeld na het gebruik van onze app?",
+"aftercareAttemptSkip": "Neem s.v.p. de tijd om dit even rustig te lezen."
 }

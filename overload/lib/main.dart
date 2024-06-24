@@ -133,7 +133,7 @@ class _MainAppState extends State<MainApp> {
                     title: AppLocalizations.of(context)!.theMallTitle,
                     type: ExperienceType.mall,
                     color: const Color(0xffFF2F26),
-                    url: ''));
+                    url: 'https://i.imgur.com/dkgMvTW.mp4'));
 
           case "station":
             return DifficultyPage(
@@ -157,7 +157,7 @@ class _MainAppState extends State<MainApp> {
                     title: AppLocalizations.of(context)!.theMallTitle,
                     type: ExperienceType.concert,
                     color: const Color(0xff07BFEB),
-                    url: ''));
+                    url: 'https://i.imgur.com/8h5685I.mp4'));
           default:
             return const Placeholder();
         }
@@ -171,7 +171,7 @@ class _MainAppState extends State<MainApp> {
           case "mall":
             return ExperienceIntro(
                 params: ExperienceIntroParameters(
-              url: '',
+              url: 'https://i.imgur.com/dkgMvTW.mp4',
               indicators: {
                 AppLocalizations.of(context)!.triggerCrowds: Icons.people,
                 AppLocalizations.of(context)!.triggerNoise: Icons.volume_up,
@@ -185,6 +185,7 @@ class _MainAppState extends State<MainApp> {
                 AppLocalizations.of(context)!.strategyFamily: Icons.group
               },
               color: const Color(0xffFF2F26),
+              type: ExperienceType.mall,
             ));
           case "station":
             return ExperienceIntro(
@@ -206,7 +207,8 @@ class _MainAppState extends State<MainApp> {
                       AppLocalizations.of(context)!.strategyFriends:
                           Icons.group,
                     },
-                    color: const Color(0xffFEAC01)));
+                    color: const Color(0xffFEAC01),
+                    type: ExperienceType.trainStation));
           case "playground":
             return ExperienceIntro(
                 params: ExperienceIntroParameters(
@@ -227,12 +229,13 @@ class _MainAppState extends State<MainApp> {
                       AppLocalizations.of(context)!.strategyHeadphones:
                           Icons.headset,
                     },
-                    color: const Color(0xffC3F3B3)));
+                    color: const Color(0xffC3F3B3),
+                    type: ExperienceType.playground));
 
           case "concert":
             return ExperienceIntro(
                 params: ExperienceIntroParameters(
-                    url: '',
+                    url: 'https://i.imgur.com/8h5685I.mp4',
                     indicators: {
                       AppLocalizations.of(context)!.triggerLoud:
                           Icons.volume_up,
@@ -249,7 +252,8 @@ class _MainAppState extends State<MainApp> {
                       AppLocalizations.of(context)!.strategyFriends:
                           Icons.group,
                     },
-                    color: const Color(0xff07BFEB)));
+                    color: const Color(0xff07BFEB),
+                    type: ExperienceType.concert));
 
           default:
             return const Placeholder();

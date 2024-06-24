@@ -23,6 +23,12 @@ class VideoPlayerPage extends StatefulWidget {
       case ExperienceType.trainStation:
         soundMan = TrainStationSceMan(0, soundCertainty: params.soundCertainty);
         break;
+      case ExperienceType.concert:
+        soundMan = ConcertSceMan(0, soundCertainty: params.soundCertainty);
+        break;
+      case ExperienceType.mall:
+        soundMan = MallSceMan(0, soundCertainty: params.soundCertainty);
+        break;
       default:
         soundMan = EmptySoundManager(0, soundCertainty: 0.0);
     }
@@ -157,6 +163,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
       _isDisclaimerShowing = false;
     });
     pauseOrPlayVR(pause: false);
+    cardBoardPressed();
   }
 
   void cancelLeave() {
@@ -172,7 +179,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
       _isShowingConfirmExit = false;
     });
 
-    context.go(RATE_ROUTE);
+    context.push(RATE_ROUTE);
 
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
@@ -232,7 +239,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
         });
         break;
       case VrState.ready:
-        pauseOrPlayVR(pause: false);
         setState(() {
           isVideoLoading = false;
           isVideoReady = true;

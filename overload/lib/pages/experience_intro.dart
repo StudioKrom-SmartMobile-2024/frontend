@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:overload/models/experience_difficulty_params.dart';
 import 'package:overload/utils/constants.dart';
 import 'package:overload/models/experience_intro_params.dart';
-import 'package:overload/models/experience_params.dart';
 import 'package:overload/models/experience_type.dart';
 import 'package:overload/widgets/shapes/wave_painter.dart';
 import 'package:overload/widgets/common/default_header.dart';
@@ -110,12 +108,15 @@ class ExperienceIntro extends StatelessWidget {
             Row(
               children: [
                 const Expanded(flex: 1, child: SizedBox()),
-                GradientButton(
-                  onPress: isButtonDisabled
-                      ? null
-                      : () => onPressProceed(context, params),
-                  text: AppLocalizations.of(context)!.confirmEnterVR,
-                  iconData: Icons.chevron_right,
+                GestureDetector(
+                  onTap: () => onTapButton(context),
+                  child: GradientButton(
+                    onPress: isButtonDisabled
+                        ? null
+                        : () => onPressProceed(context, params),
+                    text: AppLocalizations.of(context)!.confirmEnterVR,
+                    iconData: Icons.chevron_right,
+                  ),
                 ),
               ],
             )
@@ -125,8 +126,39 @@ class ExperienceIntro extends StatelessWidget {
     ])));
   }
 
+  void onTapButton(BuildContext context) {
+    if (!isButtonDisabled) return;
+
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      content: Text(
+        AppLocalizations.of(context)!.experienceWIP,
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
+      action: SnackBarAction(
+        textColor: params.color,
+        label: AppLocalizations.of(context)!.exitVRCancel,
+        onPressed: () {
+          context.push(HOME_ROUTE);
+        },
+      ),
+      duration: const Duration(milliseconds: 2500),
+    ));
+  }
+
   void onPressProceed(BuildContext context, ExperienceIntroParameters params) {
-    var experienceName = 'station';
+    var experienceName;
+
+    if (params.type == ExperienceType.mall) {
+      experienceName = 'mall';
+    } else if (params.type == ExperienceType.concert) {
+      experienceName = 'concert';
+    } else {
+      experienceName = 'station';
+    }
+
     context.push("/difficulty/$experienceName");
   }
 }

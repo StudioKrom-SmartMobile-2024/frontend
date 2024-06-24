@@ -47,6 +47,8 @@
   "triggerLights": "Lights",
   "triggerLoud": "Loud",
 
+  "experienceWIP": "Sorry, we're still working hard on this experience. In the mean time, feel free to try one of our finished experiences.",
+
   "strategiesTitle": "Strategies",
   "strategiesDescription": "If you notice that you or a close one experiences sensory issues in such environment these are common helping tricks:",
   "confirmEnterVR": "Proceed",
@@ -77,5 +79,10 @@
 
   "difficultyHard": "Hard",
   "difficultyNormal": "Normal",
-  "difficultyEasy": "Low"
+  "difficultyEasy": "Low",
+
+  "aftercareStart": "Visit ",
+  "aftercareEnd": " for resources and support for yourself or a loved one experiencing overstimulation or other discomfort.",
+  "aftercareTitle": "Feeling overwhelmed after using our app?",
+  "aftercareAttemptSkip": "Please take the time to carefully read this."
 }
