@@ -31,7 +31,11 @@ abstract class SoundManager {
   }
 
   Future<void> playSound(String pathToSound,
-      {double posX = 0, double posY = 0, double posZ = 0}) async {
+      {double posX = 0,
+      double posY = 0,
+      double posZ = 0,
+      double vol = 0.5,
+      bool loop = false}) async {
     final source = await soloud.loadAsset(pathToSound);
 
     if (usedSources.contains(source)) {
@@ -40,7 +44,8 @@ abstract class SoundManager {
 
     usedSources.add(source);
 
-    final handle = await soloud.play3d(source, posX, posY, posZ);
+    final handle = await soloud.play3d(source, posX, posY, posZ,
+        volume: vol, looping: loop);
     handles.add(handle);
   }
 
@@ -61,15 +66,70 @@ class TrainStationSceMan extends SoundManager {
     soloud.init();
   }
 
-  String nsAnnouncementPath = 'assets/audio/ns.mp3';
+  static const basePath = "assets/audio/train";
+  String nsAnnouncementPath = '$basePath/ns.mp3';
+  String kidScreamingPath = '$basePath/kid-screams.mp3';
+  String doorSlamPath = '$basePath/door-slam.mp3';
+  String escalatorAmbiencePath = '$basePath/escalator-ambience.mp3';
+  String genericCrowdPath = '$basePath/generic-crowd.mp3';
+  String trainArrivingPath = '$basePath/train-arriving.mp3';
+  String trainPassingPath = '$basePath/train-passing.mp3';
+  String virmCloseDoorPath = '$basePath/VIRM-door-close.mp3';
+  String dogBarkPath = '$basePath/dog-barking';
 
   @override
   void checkStopwatchForSounds() {
     if (!shouldPlaySound(soundCertainty)) return;
 
     switch (currentPosition) {
-      case > 1400 && < 1500:
-        playSound(nsAnnouncementPath, posY: 50);
+      case > 0 && < 250:
+        playSound(escalatorAmbiencePath, posZ: -10, vol: 1.0, loop: true);
+      case > 1000 && < 1200:
+        playSound(doorSlamPath, posX: 50, vol: 0.7);
+      case > 2000 && < 2200:
+        playSound(nsAnnouncementPath, posY: 10, vol: 0.8);
+      case > 5500 && < 5700:
+        playSound(kidScreamingPath, posZ: -50, posX: -25, vol: 0.3);
+      case > 7000 && < 7200:
+        playSound(trainPassingPath, posX: 25, vol: 2.0);
+    }
+  }
+}
+
+class ConcertSceMan extends SoundManager {
+  ConcertSceMan(super.currentPosition, {super.soundCertainty}) {
+    soloud.init();
+  }
+
+  static const basePath = "assets/audio/concert";
+  String examplePath = '$basePath/idontexist.mp3';
+
+  @override
+  void checkStopwatchForSounds() {
+    if (!shouldPlaySound(soundCertainty)) return;
+
+    switch (currentPosition) {
+      case > 0 && < 250:
+        playSound(examplePath);
+    }
+  }
+}
+
+class MallSceMan extends SoundManager {
+  MallSceMan(super.currentPosition, {super.soundCertainty}) {
+    soloud.init();
+  }
+
+  static const basePath = "assets/audio/mall";
+  String examplePath = '$basePath/idontexist.mp3';
+
+  @override
+  void checkStopwatchForSounds() {
+    if (!shouldPlaySound(soundCertainty)) return;
+
+    switch (currentPosition) {
+      case > 0 && < 250:
+        playSound(examplePath);
     }
   }
 }
