@@ -30,23 +30,23 @@ class _EmotionSelectorState extends State<EmotionSelector> {
       child: Row(
         children: [
           EmotionCard(
-            icon: Icons.sentiment_very_satisfied,
-            description: AppLocalizations.of(context)!.feelingGood,
-            color: Colors.green,
+            assetQuery: "assets/img/emoji/image.png",
+            description: AppLocalizations.of(context)!.feelingDisoriented,
+            //color: Colors.red,
             selected: selectedEmotion == 'Good',
             onTap: () => _selectEmotion('Good'),
           ),
           EmotionCard(
-            icon: Icons.sentiment_neutral,
-            description: AppLocalizations.of(context)!.feelingNormal,
-            color: Colors.yellow,
+            assetQuery: "assets/img/emoji/icons8-light-on-96.png",
+            description: AppLocalizations.of(context)!.feelingInformed,
+            //color: Colors.yellow,
             selected: selectedEmotion == 'Normal',
             onTap: () => _selectEmotion('Normal'),
           ),
           EmotionCard(
-            icon: Icons.sentiment_very_dissatisfied,
-            description: AppLocalizations.of(context)!.feelingBad,
-            color: Colors.red,
+            assetQuery: "assets/img/emoji/icons8-blushing-96.png",
+            description: AppLocalizations.of(context)!.feelingRelatable,
+            //color: Colors.green,
             selected: selectedEmotion == 'Bad',
             onTap: () => _selectEmotion('Bad'),
           ),
@@ -57,17 +57,17 @@ class _EmotionSelectorState extends State<EmotionSelector> {
 }
 
 class EmotionCard extends StatelessWidget {
-  final IconData icon;
+  final String assetQuery;
   final String description;
   final bool selected;
-  final Color color;
+  //final Color color;
   final VoidCallback onTap;
 
   const EmotionCard({
     super.key,
-    required this.icon,
+    required this.assetQuery,
     required this.description,
-    required this.color,
+    //required this.color,
     required this.onTap,
     this.selected = false,
   });
@@ -79,10 +79,10 @@ class EmotionCard extends StatelessWidget {
         onTap: onTap,
         child: Column(
           children: [
-            Icon(
-              icon,
-              color: color,
-              size: selected ? 70 : 50,
+            Image.asset(
+              assetQuery,
+              //color: color,
+              width: selected ? 70 : 50,
             ),
             Text(
               description,

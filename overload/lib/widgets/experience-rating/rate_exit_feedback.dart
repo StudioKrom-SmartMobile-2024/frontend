@@ -44,25 +44,20 @@ class RateExitFeedback extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               onPressCancel != null && cancelText != null
                   ? CancelButton(
                       text: cancelText!,
                       onPress: onPressCancel!,
                     )
-                  : const Expanded(
-                      flex: 1,
-                      child: SizedBox(),
+                  : const SizedBox(
+                      height: 0,
+                      width: 0,
                     ),
-              const SizedBox(
-                width: 25,
-              ),
               Expanded(
-                flex: 1,
-                child: GradientButton(
-                    onPress: onPressContinue, text: continueText),
-              )
+                  child: GradientButton(
+                      onPress: onPressContinue, text: continueText)),
             ],
           ),
         )
