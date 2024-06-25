@@ -92,11 +92,13 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
               bottom: 8,
               child: IconButton(
                 iconSize: 36,
-                icon: const Icon(
+                icon: Icon(
                   Icons.logout,
-                  color: Colors.red,
+                  color: _isShowingCountdown
+                      ? Color.fromARGB(44, 244, 67, 54)
+                      : Colors.red,
                 ),
-                onPressed: () => exitExperience(),
+                onPressed: _isShowingCountdown ? null : () => exitExperience(),
               )),
           _isSettingsShown
               ? SettingsOverlay(
@@ -109,11 +111,15 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
                   top: 8,
                   child: IconButton(
                     iconSize: DEFAULT_ICON_SIZE,
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.settings,
-                      color: Colors.white,
+                      color: _isShowingCountdown
+                          ? Color.fromARGB(44, 255, 255, 255)
+                          : Colors.white,
                     ),
-                    onPressed: () => switchSettingsDisplay(true),
+                    onPressed: _isShowingCountdown
+                        ? null
+                        : () => switchSettingsDisplay(true),
                   )),
           if (_isShowingCountdown)
             Positioned(
