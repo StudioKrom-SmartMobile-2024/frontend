@@ -21,9 +21,17 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
-  var isDarkMode = prefs.getBool('darkmode') ?? false;
+
+  var isDarkMode = prefs.getBool('darkmode');
   var locale = prefs.getString('locale') ?? 'en';
-  ThemeMode initialThemeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
+
+  ThemeMode initialThemeMode;
+  if (isDarkMode == null) {
+    initialThemeMode = ThemeMode.system;
+  } else {
+    initialThemeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
+  }
+
   runApp(MainApp(
     initialThemeMode: initialThemeMode,
     localeCode: locale,
@@ -133,7 +141,7 @@ class _MainAppState extends State<MainApp> {
                     title: AppLocalizations.of(context)!.theMallTitle,
                     type: ExperienceType.mall,
                     color: const Color(0xffFF2F26),
-                    url: 'https://i.imgur.com/dkgMvTW.mp4'));
+                    url: ''));
 
           case "station":
             return DifficultyPage(
@@ -171,7 +179,7 @@ class _MainAppState extends State<MainApp> {
           case "mall":
             return ExperienceIntro(
                 params: ExperienceIntroParameters(
-              url: 'https://i.imgur.com/dkgMvTW.mp4',
+              url: '',
               indicators: {
                 AppLocalizations.of(context)!.triggerCrowds: Icons.people,
                 AppLocalizations.of(context)!.triggerNoise: Icons.volume_up,

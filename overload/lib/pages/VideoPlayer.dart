@@ -7,6 +7,8 @@ import 'package:overload/utils/constants.dart';
 import 'package:overload/utils/sound_manager.dart';
 import 'package:overload/widgets/vr-overlays/confirmation_dialogue.dart';
 import 'package:overload/widgets/vr-overlays/settings_overlay.dart';
+import 'package:timer_count_down/timer_controller.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 import 'package:vr_player/vr_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -40,10 +42,13 @@ class VideoPlayerPage extends StatefulWidget {
 
 class _VideoPlayerPageState extends State<VideoPlayerPage>
     with TickerProviderStateMixin {
+  late final CountdownController _countdownController =
+      CountdownController(autoStart: true);
   late VrPlayerController _viewPlayerController;
   late double _playerWidth;
   late double _playerHeight;
 
+  bool _isShowingCountdown = false;
   bool _isPlaying = false;
   bool _isSettingsShown = false;
   bool _isShowingConfirmExit = false;
@@ -110,6 +115,30 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
                     ),
                     onPressed: () => switchSettingsDisplay(true),
                   )),
+          if (_isShowingCountdown)
+            Positioned(
+              left: _playerWidth * 0.125,
+              top: _playerHeight * 0.125,
+              width: _playerWidth * 0.75,
+              height: _playerHeight * 0.75,
+              child: Center(
+                child: Countdown(
+                  controller: _countdownController,
+                  seconds: 5,
+                  build: (_, double time) => Text(
+                    time.floor().toString(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineLarge!
+                        .copyWith(fontSize: 200),
+                  ),
+                  interval: const Duration(seconds: 1),
+                  onFinished: () {
+                    onCountdownEnd();
+                  },
+                ),
+              ),
+            ),
           if (isVideoLoading)
             const Center(
               child: SpinKitDualRing(
@@ -158,12 +187,20 @@ class _VideoPlayerPageState extends State<VideoPlayerPage>
     }
   }
 
-  void confirmStart() {
+  void onCountdownEnd() {
     setState(() {
-      _isDisclaimerShowing = false;
+      _isShowingCountdown = false;
     });
     pauseOrPlayVR(pause: false);
     cardBoardPressed();
+  }
+
+  void confirmStart() {
+    setState(() {
+      _isDisclaimerShowing = false;
+      _isShowingCountdown = true;
+    });
+    _countdownController.start();
   }
 
   void cancelLeave() {

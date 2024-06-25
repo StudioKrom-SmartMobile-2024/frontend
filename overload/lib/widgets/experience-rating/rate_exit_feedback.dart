@@ -55,6 +55,14 @@ class RateExitFeedback extends StatelessWidget {
                       height: 0,
                       width: 0,
                     ),
+              onPressCancel != null && cancelText != null
+                  ? const SizedBox(
+                      width: 25,
+                    )
+                  : const SizedBox(
+                      height: 0,
+                      width: 0,
+                    ),
               Expanded(
                   child: GradientButton(
                       onPress: onPressContinue, text: continueText)),
