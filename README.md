@@ -4,13 +4,26 @@ We are proud to present "OVERLOAD," an app designed to help neurotypical individ
 
 <img src="/overload/assets/img/overload-logo-transparent.png" alt="" width="200"/>
 
+**This app is currently in maintenance ONLY as the semester has finished, outstanding issues may be fixed.**
+
 ## Table of Contents
 
-- [Installation](#installation)
-- [Contributing](#contributing)
-- [License](#license)
+- [OVERLOAD](#overload)
+  - [Table of Contents](#table-of-contents)
+  - [Latest app version installation](#latest-app-version-installation)
+  - [Developer installation](#developer-installation)
+  - [Contributing](#contributing)
+  - [License](#license)
 
-## Installation
+## Latest app version installation
+
+1. Download overload.apk on an Android device.
+2. Install the app.
+3. Open the app.
+
+If the app has bugs, issues or experience do not load please do get in touch.
+
+## Developer installation
 
 1. Follow [Flutter's getting started](https://docs.flutter.dev/get-started/install) guide all the way up until you've got a working version of Flutter on your selected devices.
 2. Open a terminal in the working directory.
